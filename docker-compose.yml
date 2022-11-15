@@ -4,12 +4,23 @@ services:
   vue:
     build: ./client
     ports:
-      - "8080:8080"
+      - "8080:5173"
     restart: always
     volumes:
       - ./client:/app
     tty: true
-  bd:
+  laravel:
+    build: ./server/laravel
+    restart: always
+    volumes:
+      - ./server/laravel:/app
+    ports:
+      - 8000:3000
+    depends_on:
+      - db
+    networks:
+      - comp_net
+  db:
     image: mysql:5.7
     expose:
       - "3306"
@@ -28,7 +39,7 @@ services:
       - PMA_HOST=container_mysql
       - PMA_PORT=3306
     depends_on:
-      - bd
+      - db
     networks:
       - comp_net
     container_name: container_phpmyadmin
