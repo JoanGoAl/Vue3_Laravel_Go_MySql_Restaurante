@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  vue:
+    build: ./client
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - ./client:/app
+    tty: true
+  bd:
+    image: mysql:5.7
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./database:/var/lib/mysql
+    networks:
+      - comp_net
+    container_name: container_mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "9200:80"
+    environment:
+      - PMA_HOST=container_mysql
+      - PMA_PORT=3306
+    depends_on:
+      - bd
+    networks:
+      - comp_net
+    container_name: container_phpmyadmin
+
+networks:
+  comp_net:
