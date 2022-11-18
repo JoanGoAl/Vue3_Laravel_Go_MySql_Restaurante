@@ -13,22 +13,29 @@ use App\Models\Table;
 
 class TableController extends Controller
 {
-    public function getTables(Request $request) {
+    public function getTables(Request $request)
+    {
         return Table::all();
     }
 
-    public function addTable(Request $request) {
+    public function addTable(Request $request)
+    {
         return Table::create($request->toArray());
     }
 
-    public function deleteTable(Request $request, $id) {
+    public function deleteTable(Request $request, $id)
+    {
         return Table::destroy($id);
     }
 
-    public function updateTable(Request $request, $id) {
-        $table = Table::find($id);
-        return $table;
-        // $table->update($request->toArray());
-        // return $table;
+    public function updateTable(Request $request, $id)
+    {
+        try {
+            $table = Table::where('id', $id)->first();
+            $table->update($request->toArray());
+            return $table;
+        } catch (\Throwable $th) {
+            throw 'tonto';
+        }
     }
 }
