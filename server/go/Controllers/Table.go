@@ -1,10 +1,6 @@
 package Controllers
 
 import (
-	// "first-api/Models"
-	// "fmt"
-	// "net/http"
-
 	"net/http"
 	"restaurante_go/Models"
 
@@ -12,11 +8,13 @@ import (
 )
 
 func GetTable(c *gin.Context) {
-	var user []Models.Table
-	err := Models.GetAllUsers(&user)
+	var table []Models.Table
+	err := Models.GetAllTables(&table)
+
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusOK, user)
+		c.JSON(http.StatusOK, gin.H{"data": "table"})
 	}
+
 }

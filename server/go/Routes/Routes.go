@@ -1,7 +1,9 @@
 package Routes
 
 import (
-	// "first-api/Controllers"
+	// "restaurante_go/Controllers"
+
+	"restaurante_go/Controllers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,9 +11,12 @@ import (
 // SetupRouter ... Configure routes
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
-	// grp1 := r.Group("/table-api")
+
+	grp1 := r.Group("/table-api")
+
 	{
-		// grp1.GET("tables", Controllers.GetUsers)
+		// grp1.GET("/table", gin.H{"data": "user"})
+		grp1.GET("/tables", Controllers.GetTable)
 		// grp1.POST("user", Controllers.CreateUser)
 		// grp1.GET("user/:id", Controllers.GetUserByID)
 		// grp1.PUT("user/:id", Controllers.UpdateUser)

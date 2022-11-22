@@ -1,15 +1,15 @@
 package Models
 
-// import (
-// 	// "first-api/Config"
-// 	// "fmt"
+import (
+	"restaurante_go/Config"
+	// "fmt"
 
-// 	// _ "github.com/go-sql-driver/mysql"
-// )
+	_ "github.com/go-sql-driver/mysql"
+)
 
-func GetAllUsers(user *[]Table) (err error) {
-	// if err = Config.DB.Find(user).Error; err != nil {
-	// 	return err
-	// }
+func GetAllTables(table *[]Table) (err error) {
+	if err = Config.DB.Find(table).Error; err != nil {
+		return err
+	}
 	return nil
 }
