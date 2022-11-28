@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  vue:
-    build: ./client
-    ports:
-      - "8080:5173"
-    restart: always
-    volumes:
-      - ./client:/app
-    tty: true
-    container_name: container_vue
+  # vue:
+  #   build: ./client
+  #   ports:
+  #     - "8080:5173"
+  #   restart: always
+  #   volumes:
+  #     - ./client:/app
+  #   tty: true
+  #   container_name: container_vue
   # laravel:
   #   build: ./server/laravel
   #   restart: always
