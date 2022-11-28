@@ -3,7 +3,7 @@ package Routes
 import (
 	// "restaurante_go/Controllers"
 
-	"restaurante_go/Controllers"
+	"restaurante_go/tables"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,7 +16,7 @@ func SetupRouter() *gin.Engine {
 
 	{
 		// grp1.GET("/table", gin.H{"data": "user"})
-		grp1.GET("/tables", Controllers.GetTable)
+		grp1.GET("/allTables", tables.GetTables)
 		// grp1.POST("user", Controllers.CreateUser)
 		// grp1.GET("user/:id", Controllers.GetUserByID)
 		// grp1.PUT("user/:id", Controllers.UpdateUser)

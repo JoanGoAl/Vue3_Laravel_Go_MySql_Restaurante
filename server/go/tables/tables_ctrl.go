@@ -1,4 +1,4 @@
-package Models
+package tables
 
 import (
 	"restaurante_go/Config"

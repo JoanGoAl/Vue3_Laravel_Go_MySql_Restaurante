@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"restaurante_go/Config"
-	"restaurante_go/Models"
 	"restaurante_go/Routes"
 
 	"github.com/jinzhu/gorm"
@@ -18,8 +17,8 @@ func main() {
 		fmt.Println("Status:", err)
 	}
 
-	defer Config.DB.Close()
-	Config.DB.AutoMigrate(&Models.Table{})
+	// defer Config.DB.Close()
+	// Config.DB.AutoMigrate(&Models.Table{})
 
 	r := Routes.SetupRouter()
 	//running
