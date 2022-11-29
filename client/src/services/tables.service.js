@@ -1,8 +1,10 @@
 import Api from '@/services/Api'
-import env from '../secret'
+import secret from '../secret'
+
+const TABLE_API = secret.GO_API_URL + '/table-api'
 
 export default {
     getTables() {
-        return env.GO_API_URL
+        return Api(TABLE_API).get('allTables')
     }
 }

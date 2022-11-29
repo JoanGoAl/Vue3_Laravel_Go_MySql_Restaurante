@@ -1,8 +1,9 @@
 <script setup>
 import TableService from '@/services/tables.service'
 
-function hola() {
-    console.log(TableService.getTables());
+async function hola() {
+    let tables = await TableService.getTables()
+    console.log(tables.data);
 }
 
 </script>
