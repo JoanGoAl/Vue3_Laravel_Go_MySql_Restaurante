@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TableController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/hola', function() {
-    return "Hola, mundo";
- });
+Route::get('/getTables', [TableController::class , 'getTables']);
+Route::post('/addTable', [TableController::class , 'addTable']);
+Route::delete('/deleteTable/{id}', [TableController::class , 'deleteTable']);
+Route::put('/updateTable/{id}', [TableController::class , 'updateTable']);

@@ -6,24 +6,36 @@ services:
     ports:
       - "8080:5173"
     restart: always
-    volumes:
-      - ./client:/app
     tty: true
-  laravel:
-    build: ./server/laravel
-    restart: always
+    container_name: container_vue
+  golang:
+    build: ./server/go
     volumes:
-      - ./server/laravel:/app
+      - ./server/go:/go/src
     ports:
-      - 8000:3000
+      - "4000:8080"
+    restart: always
     depends_on:
-      - db
+      - phpmyadmin
     networks:
       - comp_net
+    container_name: container_golang
+  # laravel:
+  #   build: ./server/laravel
+  #   restart: always
+  #   volumes:
+  #     - ./server/laravel:/app
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - comp_net
+  #   container_name: container_laravel
   db:
     image: mysql:5.7
-    expose:
-      - "3306"
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
