@@ -1,8 +1,7 @@
 FROM node:lts-alpine
 WORKDIR /app
 
-COPY . .
-RUN npm install
+RUN npm install -g npm@9.1.2
 
 EXPOSE 5173
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "install"]

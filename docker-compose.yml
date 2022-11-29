@@ -2,12 +2,15 @@ version: '3.8'
 
 services:
   vue:
+    container_name: container_vue
     build: ./client
     ports:
       - "8080:5173"
     restart: always
+    volumes:
+      - ./client:/app
     tty: true
-    container_name: container_vue
+    command: npm run dev
   golang:
     build: ./server/go
     volumes:
