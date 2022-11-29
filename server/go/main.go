@@ -22,5 +22,5 @@ func main() {
 
 	r := Routes.SetupRouter()
 	//running
-	r.Run(":4000")
+	r.Run()
 }
