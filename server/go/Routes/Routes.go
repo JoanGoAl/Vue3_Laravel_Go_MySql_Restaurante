@@ -4,7 +4,8 @@ import (
 	// "restaurante_go/Controllers"
 
 	"net/http"
-	"restaurante_go/tables"
+	"restaurante_go/core/clients"
+	"restaurante_go/core/tables"
 
 	"github.com/gin-gonic/gin"
 )
@@ -35,18 +36,18 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 	r.Use(CORS)
 
-	grp1 := r.Group("/table-api")
-
+	grp_table := r.Group("/table-api")
 	{
-		// grp1.GET("/table", gin.H{"data": "user"})
-		grp1.GET("/allTables", tables.GetTables)
-		grp1.POST("/createTable", tables.CreateTable)
-		grp1.DELETE("/deleteTable/:id", tables.DeleteTable)
-		grp1.PUT("/updateTable/:id", tables.UpdateTable)
-		// grp1.POST("user", Controllers.CreateUser)
-		// grp1.GET("user/:id", Controllers.GetUserByID)
-		// grp1.PUT("user/:id", Controllers.UpdateUser)
-		// grp1.DELETE("user/:id", Controllers.DeleteUser)
+		grp_table.GET("/allTables", tables.GetTables)
+		grp_table.POST("/createTable", tables.CreateTable)
+		grp_table.DELETE("/deleteTable/:id", tables.DeleteTable)
+		grp_table.PUT("/updateTable/:id", tables.UpdateTable)
+	}
+
+	grp_client := r.Group("/client-api")
+	{
+		grp_client.GET("/allClients", clients.GetClients)
+		grp_client.GET("/client/:id", clients.GetClientById)
 	}
 	return r
 }

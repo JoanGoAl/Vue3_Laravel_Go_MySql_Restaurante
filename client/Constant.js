@@ -5,6 +5,5 @@ export default {
     TOGGLE_DONE: "toggleDone",
     DELETE_TABLE: "deleteTable",
     INITIALIZE_TABLE: "initializeTable",
-
     //
 }

@@ -1,16 +1,18 @@
 version: '3.8'
 
 services:
-  vue:
-    container_name: container_vue
-    build: ./client
-    ports:
-      - "8080:5173"
-    restart: always
-    volumes:
-      - ./client:/app
-    tty: true
-    command: npm run dev
+  # vue:
+  #   container_name: container_vue
+  #   build: ./client
+  #   ports:
+  #     - "8080:5173"
+  #   restart: always
+  #   volumes:
+  #     - ./client:/app
+  #   tty: true
+  #   env_file:
+  #     - ./client/.env
+  #   command: npm run dev
   golang:
     build: ./server/go
     volumes:
@@ -23,18 +25,6 @@ services:
     networks:
       - comp_net
     container_name: container_golang
-  # laravel:
-  #   build: ./server/laravel
-  #   restart: always
-  #   volumes:
-  #     - ./server/laravel:/app
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - comp_net
-  #   container_name: container_laravel
   db:
     image: mysql:5.7
     ports:
@@ -58,6 +48,18 @@ services:
     networks:
       - comp_net
     container_name: container_phpmyadmin
+  # laravel:
+  #   build: ./server/laravel
+  #   restart: always
+  #   volumes:
+  #     - ./server/laravel:/app
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - comp_net
+  #   container_name: container_laravel
 
 networks:
   comp_net:
