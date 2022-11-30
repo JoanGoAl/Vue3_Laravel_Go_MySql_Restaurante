@@ -5,6 +5,7 @@ import (
 	"restaurante_go/Config"
 	"restaurante_go/Routes"
 	"restaurante_go/core/clients"
+	"restaurante_go/core/reservas"
 	"restaurante_go/core/tables"
 
 	"github.com/jinzhu/gorm"
@@ -17,6 +18,7 @@ func main() {
 	defer Config.DB.Close()
 	Config.DB.AutoMigrate(&tables.Table{})
 	Config.DB.AutoMigrate(&clients.Client{})
+	Config.DB.AutoMigrate(&reservas.Reserva{})
 
 	if err != nil {
 		fmt.Println("Status:", err)
@@ -24,5 +26,5 @@ func main() {
 
 	r := Routes.SetupRouter()
 	//running
-	r.Run()
+	r.Run(":4000")
 }

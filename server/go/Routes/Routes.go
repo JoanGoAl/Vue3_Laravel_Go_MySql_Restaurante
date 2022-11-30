@@ -5,6 +5,7 @@ import (
 
 	"net/http"
 	"restaurante_go/core/clients"
+	"restaurante_go/core/reservas"
 	"restaurante_go/core/tables"
 
 	"github.com/gin-gonic/gin"
@@ -48,6 +49,12 @@ func SetupRouter() *gin.Engine {
 	{
 		grp_client.GET("/allClients", clients.GetClients)
 		grp_client.GET("/client/:id", clients.GetClientById)
+	}
+
+	grp_reserva := r.Group("/reserva-api")
+	{
+		grp_reserva.GET("/reserva/:id", reservas.GetReserva)
+		grp_reserva.POST("/createReserva", reservas.CreateReserva)
 	}
 	return r
 }

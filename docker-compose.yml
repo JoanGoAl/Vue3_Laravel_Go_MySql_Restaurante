@@ -13,18 +13,18 @@ services:
   #   env_file:
   #     - ./client/.env
   #   command: npm run dev
-  golang:
-    build: ./server/go
-    volumes:
-      - ./server/go:/go/src
-    ports:
-      - "4000:8080"
-    restart: always
-    depends_on:
-      - phpmyadmin
-    networks:
-      - comp_net
-    container_name: container_golang
+  # golang:
+  #   build: ./server/go
+  #   volumes:
+  #     - ./server/go:/go/src
+  #   ports:
+  #     - "4000:4000"
+  #   restart: always
+  #   depends_on:
+  #     - phpmyadmin
+  #   networks:
+  #     - comp_net
+  #   container_name: container_golang
   db:
     image: mysql:5.7
     ports:
