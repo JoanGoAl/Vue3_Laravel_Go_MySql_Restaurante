@@ -6,4 +6,7 @@ export default {
     DELETE_TABLE: "deleteTable",
     INITIALIZE_TABLE: "initializeTable",
     //
+
+    // Tables
+    GET_TABLE: "gatTables",
 }

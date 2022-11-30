@@ -1,30 +1,30 @@
 version: '3.8'
 
 services:
-  # vue:
-  #   container_name: container_vue
-  #   build: ./client
-  #   ports:
-  #     - "8080:5173"
-  #   restart: always
-  #   volumes:
-  #     - ./client:/app
-  #   tty: true
-  #   env_file:
-  #     - ./client/.env
-  #   command: npm run dev
-  # golang:
-  #   build: ./server/go
-  #   volumes:
-  #     - ./server/go:/go/src
-  #   ports:
-  #     - "4000:4000"
-  #   restart: always
-  #   depends_on:
-  #     - phpmyadmin
-  #   networks:
-  #     - comp_net
-  #   container_name: container_golang
+  vue:
+    container_name: container_vue
+    build: ./client
+    ports:
+      - "8080:5173"
+    restart: always
+    volumes:
+      - ./client:/app
+    tty: true
+    env_file:
+      - ./client/.env
+    command: npm run dev
+  golang:
+    build: ./server/go
+    volumes:
+      - ./server/go:/go/src
+    ports:
+      - "4000:4000"
+    restart: always
+    depends_on:
+      - phpmyadmin
+    networks:
+      - comp_net
+    container_name: container_golang
   db:
     image: mysql:5.7
     ports:
