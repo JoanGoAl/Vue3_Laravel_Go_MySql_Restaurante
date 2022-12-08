@@ -1,11 +1,13 @@
 <script>
 import Mesa from "../../components/reservar/Mesa.vue";
+import Filtros from "../../components/reservar/Filtros.vue";
 import { useStore } from "vuex";
 import Constant from "../../Constant"
 import { reactive, computed } from "vue";
 export default {
     components: {
         Mesa,
+        Filtros
     },
     setup() {
         const store = useStore();
@@ -24,9 +26,10 @@ export default {
 
 <template >
 
-
     <div class="container_restaurant">
-        <div class="container-filtros"></div>
+        <div class="container-filtros">
+            <Filtros />
+        </div>
         <div class="restaurant">
             <div class="container_mesas" v-if="state.tableslist">
                 <div class="container-terraza">
