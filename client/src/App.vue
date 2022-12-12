@@ -10,3 +10,10 @@ import HeaderVue from './components/header/Header.vue';
   <RouterView />
 </template>
 
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+</style>

@@ -5,21 +5,17 @@ import router from './router'
 import './assets/main.css'
 import store from './store'
 
-/* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
-
-/* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-/* import specific icons */
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import * as VIcons from "oh-vue-icons/icons";
 
 
-library.add(faUserSecret)
+const Vi = Object.values({ ...VIcons })
+addIcons(...Vi);
+// library.add(faUserSecret)
 // Use v-calendar & v-date-picker components
 const app = createApp(App)
 app.use(router)
 app.use(store)
-app.component('font-awesome-icon', FontAwesomeIcon)
+app.component('v-icon', OhVueIcon)
 
 app.mount('#app')

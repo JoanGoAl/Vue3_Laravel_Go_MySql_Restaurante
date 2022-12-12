@@ -7,25 +7,25 @@ import NotFoundView from '../views/notFound/notFoundView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { 
-      path: '/', 
+    {
+      path: '/',
       redirect: '/home'
     },
     { path: '/home', name: 'home', component: HomeView },
     { path: '/reserve', name: 'reserve', component: ReserveView },
     { path: '/profile', name: 'profile', component: ReserveView },
-    { 
-      path: '/admin', 
-      name: 'panelAdmin', 
+    {
+      path: '/admin',
+      name: 'panelAdmin',
+      redirect: '/admin/users',
       component: PanelAdminView,
       children: [
-        {path: '/', redirect: '/admin'},
-        // {path: 'tables', name: 'rooms', component: () => import('../views/panelAdmin/rooms/RoomsView.vue')},
-        // {path: 'users', name: 'users', component: () => import('../views/panelAdmin/users/UsersView.vue')},
-        // {path: 'reservations', name: 'reservations', component: () => import('../views/panelAdmin/reservations/ReservationsView.vue')},
+        { path: 'tables', name: 'tables', component: () => import('../views/panelAdmin/tablesView.vue') },
+        { path: 'users', name: 'users', component: () => import('../views/panelAdmin/usersView.vue') },
+        { path: 'reserve', name: 'reserve', component: () => import('../views/panelAdmin/reserveView.vue') },
+        { path: 'order', name: 'order', component: () => import('../views/panelAdmin/orderView.vue') }
       ]
     },
-
     { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFoundView }
   ]
 })
