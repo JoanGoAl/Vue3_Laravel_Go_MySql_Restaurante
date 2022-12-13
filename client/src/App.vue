@@ -6,7 +6,7 @@ import HeaderVue from './components/header/Header.vue';
 </script>
 
 <template>
-  <HeaderVue />
+  <HeaderVue v-if="$route.path.split('/')[1] !== 'admin'" />
   <RouterView />
 </template>
 

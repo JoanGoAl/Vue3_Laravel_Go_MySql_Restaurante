@@ -36,6 +36,7 @@ const routes = [
 
   <div class="container_panel_admin">
     <nav>
+      <img src="../../../public/ggFood_logo.png" alt="" width="100">
       <RouterLink v-for="(item, index) in routes" :key="index" :to=item.path>
         <SectionAdmin :title=item.title :icon=item.icon />
       </RouterLink>
@@ -62,10 +63,11 @@ const routes = [
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 89.5vh;
+  height: 100vh;
 }
 
 .container_panel_admin>nav {
+  position: fixed;
   background-color: #a97555;
   width: 100px;
   height: 100%;
@@ -79,7 +81,9 @@ nav>a:nth-child(1) {
 }
 
 .admin-view {
-  max-width: 90%;
+  /* background-color: green; */
+  width: 94%;
   padding: 10px 15px;
+  padding-left: 175px;
 }
 </style>

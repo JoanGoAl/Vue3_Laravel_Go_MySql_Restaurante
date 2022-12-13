@@ -7,10 +7,7 @@ export const tables = {
     mutations: {
         [Constant.GET_TABLE]: (state, payload) => {
             if (payload) {
-                state.tables = {
-                    terraza: payload.filter(table => table.type === 'Terraza'),
-                    comedor: payload.filter(table => table.type === 'Comedor')
-                }
+                state.tables = payload
             }
         }
     },

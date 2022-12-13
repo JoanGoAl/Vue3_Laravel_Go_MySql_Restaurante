@@ -48,18 +48,18 @@ services:
     networks:
       - comp_net
     container_name: container_phpmyadmin
-  # laravel:
-  #   build: ./server/laravel
-  #   restart: always
-  #   volumes:
-  #     - ./server/laravel:/app
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - comp_net
-  #   container_name: container_laravel
+#  laravel:
+#    build: ./server/laravel
+#    restart: always
+#    volumes:
+#      - ./server/laravel:/app
+#    ports:
+#      - 3000:3000
+#    depends_on:
+#      - db
+#    networks:
+#      - comp_net
+#    container_name: container_laravel
 
 networks:
   comp_net:

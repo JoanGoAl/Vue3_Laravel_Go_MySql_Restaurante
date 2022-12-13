@@ -35,7 +35,7 @@ class TableController extends Controller
             $table->update($request->toArray());
             return $table;
         } catch (\Throwable $th) {
-            throw 'tonto';
+            return 'tonto';
         }
     }
 }

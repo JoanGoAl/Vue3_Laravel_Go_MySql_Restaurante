@@ -9,10 +9,10 @@ class Table extends Model
 {
     use HasFactory;
     protected $table = 'tables';
+    public $timestamps = false;
     protected $fillable = [
-        'reserved',
         'type',
         'capacity',
-        'img',
+        'img'
     ];
 }
