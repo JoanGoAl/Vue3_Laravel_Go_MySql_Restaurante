@@ -13,9 +13,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 89vh;
     width: 98vw;
     font-size: 50px;
+    margin-top: 150px;
 }
-
 </style>

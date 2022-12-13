@@ -15,13 +15,18 @@ const routes = [
   },
   {
     path: '/admin/reserve',
-    title: 'reserve',
+    title: 'reserveAdmin',
     icon: 'bi-calendar-event-fill',
   },
   {
     path: '/admin/order',
     title: 'order',
     icon: 'fa-shopping-cart',
+  },
+  {
+    path: '/admin/product',
+    title: 'product',
+    icon: 'fa-utensils'
   }
 ]
 
@@ -51,14 +56,13 @@ const routes = [
   width: 100%;
   background-color: red;
 } */
-
 .container_panel_admin {
-  padding-top: 10px;
+  /* padding-top: 10px; */
   /* background-color: red;  */
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 85vh;
+  height: 89.5vh;
 }
 
 .container_panel_admin>nav {
@@ -71,11 +75,11 @@ const routes = [
 }
 
 nav>a:nth-child(1) {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .admin-view {
   max-width: 90%;
-  padding: 10px;
+  padding: 10px 15px;
 }
 </style>

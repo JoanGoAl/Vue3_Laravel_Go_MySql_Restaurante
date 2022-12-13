@@ -5,7 +5,6 @@ type Table struct {
 	Type     string `json:"type"`
 	Capacity int    `json:"capacity"`
 	Img      string `json:"img"`
-	Reserved bool   `json:"reserved"`
 }
 
 func (b *Table) TableName() string {

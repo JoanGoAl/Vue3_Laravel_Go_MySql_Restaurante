@@ -37,7 +37,7 @@ const props = defineProps({
 }
 
 svg {
-    margin: 5px 10px;
+    margin: 8px 10px;
 }
 
 .container:hover,

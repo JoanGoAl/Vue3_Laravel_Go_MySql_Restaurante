@@ -1,5 +1,4 @@
 <script setup>
-import TheWelcome from '../../components/TheWelcome.vue'
 </script>
 
 <template>
@@ -28,35 +27,32 @@ import TheWelcome from '../../components/TheWelcome.vue'
   width: 100%;
 }
 
-.img_left:hover {
-  width: 250%;
-}
-
-.img_right:hover {
-  width: 250%;
-}
-
-.img_left:hover,
-.img_right:hover {
-  transition: .5s;
-  filter: brightness(60%);
+.img_left,
+.img_right {
+  transition: width .3s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  width: 50%;
+  height: 100%;
 }
 
 .img_left {
   background-image: url('../../../public/restaurante_img.jpg');
-  background-size: cover;
-  background-position: center;
-  width: 50%;
-  height: 100%;
+
 }
 
 .img_right {
   background-image: url('../../../public/domicilio_img.jpg');
-  background-size: cover;
-  background-position: center;
-  width: 50%;
-  height: 100%;
 }
+
+.img_left:hover,
+.img_right:hover {
+  width: 250%;
+  transition: .5s ease-in-out;
+  /* filter: brightness(60%); */
+}
+
+
 
 .text_img {
   font-size: 50px;

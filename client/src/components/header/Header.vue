@@ -58,6 +58,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 10.5vh;
     /* padding: 1rem; */
     box-shadow: -1px 3px 9px -4px rgba(0, 0, 0, 0.32);
 }
