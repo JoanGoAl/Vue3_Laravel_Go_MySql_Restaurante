@@ -25,7 +25,7 @@ const selectMesa = () => {
     </div>
 </template>
 
-<style>
+<style scoped>
 .container-mesa {
     width: 100%;
     height: 100%;

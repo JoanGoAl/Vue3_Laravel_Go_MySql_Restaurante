@@ -19,7 +19,7 @@
 </template>
 
 
-<style>
+<style scoped>
 .container_img {
   display: flex;
   flex-direction: row;

@@ -54,8 +54,6 @@ export default {
 </template>
 
 <style scoped>
-@import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
-
 /* Write your own CSS for pagination */
 .container-all {
   width: 100%;
