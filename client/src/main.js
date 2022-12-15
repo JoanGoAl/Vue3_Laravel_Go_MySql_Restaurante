@@ -7,14 +7,14 @@ import store from './store'
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import * as VIcons from "oh-vue-icons/icons";
-
+import Paginate from "vuejs-paginate-next";
 
 const Vi = Object.values({ ...VIcons })
 addIcons(...Vi);
-// library.add(faUserSecret)
-// Use v-calendar & v-date-picker components
+
 const app = createApp(App)
 app.use(router)
+app.use(Paginate)
 app.use(store)
 app.component('v-icon', OhVueIcon)
 

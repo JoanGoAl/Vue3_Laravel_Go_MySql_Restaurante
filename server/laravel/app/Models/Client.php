@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Client extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -17,10 +17,28 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // type Client struct {
+    //     Id        uint   `json:"id"`
+    //     Dni       string `json:"dni"`
+    //     Nombre    string `json:"nombre"`
+    //     Telefono  string `json:"telefono"`
+    //     Email     string `json:"email"`
+    //     Direccion string `json:"direccion"`
+    //     Avatar    string `json:"avatar"`
+    //     Usernane  string `json:"username"`
+    //     Password  string `json:"password"`
+    //     Admin     bool   `json:"admin"`
+    // }
     protected $fillable = [
-        'name',
+        'dni',
+        'nombre',
+        'telefono',
         'email',
+        'direccion',
+        'avatar',
+        'username',
         'password',
+        'admin',
     ];
 
     /**

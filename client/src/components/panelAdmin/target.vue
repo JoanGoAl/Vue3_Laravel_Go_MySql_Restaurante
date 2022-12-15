@@ -7,19 +7,23 @@ const props = defineProps({
   }
 })
 
+const hola = ({ table }) => {
+  console.log(table)
+}
+
 </script>
 
 <template>
 
-  <div class="container-info">
-    <h1>hola</h1>
-
+  <div class="container-info" v-on:click="hola({ table })">
+    <h1>{{ table.id }}</h1>
+    <img :src="`../../../public/${table.img}.png`" :alt="table.img" width="50">
   </div>
 </template>
 
 <style scoped>
 .container-info {
-  height: 100%;
+  height: 300px;
   width: 100%;
   display: flex;
   justify-content: center;

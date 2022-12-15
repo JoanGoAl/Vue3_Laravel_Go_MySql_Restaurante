@@ -9,4 +9,7 @@ export default {
 
     // Tables
     GET_TABLE: "gatTables",
+
+    // CLIENTS
+    GET_CLIENTS: "getClients",
 }

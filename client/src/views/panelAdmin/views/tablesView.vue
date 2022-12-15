@@ -4,12 +4,21 @@ import { useStore } from "vuex";
 import { computed, reactive } from "vue";
 import Constant from "@/Constant";
 import Target from "@/components/panelAdmin/Target.vue"
+import Paginate from 'vuejs-paginate-next';
+
 
 export default {
   components: {
-    Target
+    Target,
+    paginate: Paginate
+  },
+  methods: {
+    clickCallback(pageNumber) {
+      console.log(pageNumber);
+    }
   },
   setup() {
+
     const store = useStore();
     const state = reactive({
       tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE]),
@@ -18,7 +27,7 @@ export default {
     store.dispatch("tables/" + Constant.GET_TABLE);
 
     return {
-      state
+      state,
     }
   }
 }
@@ -31,14 +40,23 @@ export default {
     </div>
     <div class="main">
       <div class="container_targets" v-for="(mesa, index) in state.tableslist">
-        <Target v-if="index < 9" />
+        <Target :table="mesa" />
       </div>
+      <!-- <div class="container-pagination" v-if="state.tableslist">
+        <paginate :page-count="Math.ceil(state.tableslist.length / 6)" :page-range="3" :margin-pages="2"
+          :click-handler="clickCallback" :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'"
+          :page-class="'page-item'">
+        </paginate>
+      </div> -->
     </div>
   </div>
 
 </template>
 
 <style scoped>
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
+
+/* Write your own CSS for pagination */
 .container-all {
   width: 100%;
   height: 100%;
@@ -55,8 +73,8 @@ export default {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  height: 85%;
+  margin-bottom: 25px;
+  /* height: 85%; */
   /* display: grid;
   grid-template-columns: repeat(3, 1fr); */
   /* height: 89.5vh; */

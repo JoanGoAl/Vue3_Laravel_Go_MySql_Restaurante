@@ -1,6 +1,5 @@
 import Constant from '../../Constant';
-
-import TableService from '@/services/tables.service'
+import TableService from '@/services/tableService'
 
 export const tables = {
     namespaced: true,
