@@ -39,8 +39,7 @@ class Client extends Authenticatable
         'password',
         'remember_token',
         "created_at",
-        "updated_at",
-        "usernane"
+        "updated_at"
     ];
 
     /**

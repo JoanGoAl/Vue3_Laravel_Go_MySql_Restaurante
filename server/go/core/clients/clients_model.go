@@ -8,7 +8,7 @@ type Client struct {
 	Email     string `json:"email"`
 	Direccion string `json:"direccion"`
 	Avatar    string `json:"avatar"`
-	Usernane  string `json:"username"`
+	Username  string `json:"username"`
 	Password  string `json:"password"`
 	Admin     bool   `json:"admin"`
 }

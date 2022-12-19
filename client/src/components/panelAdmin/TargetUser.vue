@@ -8,7 +8,6 @@ const props = defineProps({
     }
 })
 
-
 const camposNoMostrar = ["username", "id", "avatar"];
 const disabled = ref(true);
 

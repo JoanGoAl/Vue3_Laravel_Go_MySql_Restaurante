@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 import { computed, reactive } from "vue";
 import Constant from "@/Constant";
 import { ref } from "vue";
-import TargetUser from "@/components/panelAdmin/TargetUser.vue";
+import UserInfo from "@/components/panelAdmin/UserInfo.vue";
 
 
 const store = useStore();
@@ -13,20 +13,82 @@ const state = reactive({
 
 store.dispatch("clients/" + Constant.GET_CLIENTS);
 
+const userSelected = ref(null);
+const selectUser = (client) => {
+    userSelected.value = client;
+}
 
 </script>
 
-<template >
-
+<template>
+    <h1>Usuarios</h1>
     <div class="container-users">
-        <h1>Usuarios</h1>
-        <div v-if="state.clientlist" class="flex-users">
-            <TargetUser v-for="client in state.clientlist" :key="client.id" :user="client"></TargetUser>
+        <div class="table_config">
+            <div class="user-target" v-for="client in state.clientlist" v-on:click="selectUser(client)"
+                :key="client.id">
+                <img :src="client.avatar" alt="">
+                <div>{{ client.nombre }}</div>
+            </div>
+        </div>
+        <div class="container-user-info">
+            <UserInfo v-if="userSelected" :user="userSelected" :key="userSelected.id" />
         </div>
     </div>
 </template>
 
 <style scoped>
+.container-user-info {
+    width: 50%;
+    height: 100%;
+}
+
+.container-users {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.table_config {
+    width: 50%;
+    height: 100%;
+}
+
+.user-target {
+    /* background-color: rgb(141, 141, 221); */
+    border-bottom: 1px solid rgb(0, 0, 0);
+    margin: 25px 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 15px 10px;
+}
+
+.user-target:hover {
+    /* background-color: rgb(141, 141, 221); */
+    /* nice hover style target */
+    border-bottom: 1px solid white;
+    background-color: #a97555;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.user-target>div {
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin: 0 15px
+}
+
+.user-target img {
+    width: 50px;
+
+}
+
+
 .info input {
     height: 2rem;
     margin-top: 5px;
@@ -72,24 +134,5 @@ store.dispatch("clients/" + Constant.GET_CLIENTS);
 
 .info>div {
     margin: 10px 20px;
-}
-
-.container-users {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-
-
-}
-
-.user-target {
-    /* background-color: rgb(141, 141, 221); */
-    margin: 25px;
-    height: 250px;
-    display: flex;
-    flex-direction: row;
-    max-width: 75%;
 }
 </style>
