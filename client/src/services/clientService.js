@@ -7,5 +7,8 @@ const CLIENT_API = secret.LARAVER_API_URL + '/api'
 export default {
     getClients() {
         return Api(CLIENT_API).get('getUsers')
+    },
+    editClient(client) {
+        return Api(CLIENT_API).put('updateUser', client)
     }
 }

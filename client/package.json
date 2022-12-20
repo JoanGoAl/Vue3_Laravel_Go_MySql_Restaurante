@@ -12,6 +12,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/vue-fontawesome": "^2.0.9",
+    "@meforma/vue-toaster": "^1.3.0",
     "axios": "^1.2.0",
     "dotenv": "^16.0.3",
     "oh-vue-icons": "^1.0.0-rc3",

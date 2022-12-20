@@ -8,6 +8,8 @@ import store from './store'
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import * as VIcons from "oh-vue-icons/icons";
 import Paginate from "vuejs-paginate-next";
+import Toaster from "@meforma/vue-toaster";
+
 
 const Vi = Object.values({ ...VIcons })
 addIcons(...Vi);
