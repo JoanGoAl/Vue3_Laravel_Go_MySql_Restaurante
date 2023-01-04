@@ -14,5 +14,5 @@ export default {
     GET_CLIENTS: "getClients",
 
     // PRODUCTS
-    GET_PRODUCTS_ADMIN: "getProducts",
+    GET_PRODUCTS_ADMIN: "getProductsAdmin",
 }

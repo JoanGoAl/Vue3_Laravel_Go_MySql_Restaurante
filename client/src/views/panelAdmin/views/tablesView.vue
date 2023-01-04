@@ -5,7 +5,6 @@ import { computed, reactive } from "vue";
 import Constant from "@/Constant";
 import Target from "@/components/panelAdmin/TargetTable.vue"
 
-
 const store = useStore();
 store.dispatch("tables/" + Constant.GET_TABLE);
 const state = reactive({
