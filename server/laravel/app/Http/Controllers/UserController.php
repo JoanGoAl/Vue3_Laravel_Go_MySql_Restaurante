@@ -17,4 +17,18 @@ class UserController extends Controller
     {
         return Client::all();
     }
+
+    public function updateUser(Request $request)
+    {
+        $client = Client::find($request->id);
+        $client->dni = $request->dni;
+        $client->nombre = $request->nombre;
+        $client->telefono = $request->telefono;
+        $client->email = $request->email;
+        $client->direccion = $request->direccion;
+        $client->username = $request->username;
+        $client->admin = $request->admin;
+        $client->save();
+        return $client;
+    }
 }

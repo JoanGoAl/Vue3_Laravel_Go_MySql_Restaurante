@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,9 @@ Route::put('/updateTable/{id}', [TableController::class, 'updateTable']);
 // Users
 
 Route::get('/getUsers', [UserController::class, 'getUsers']);
+Route::put('/updateUser', [UserController::class, 'updateUser']);
+
+// Products
+
+Route::get('/getProducts', [ProductController::class, 'getProducts']);
+Route::post('/addProduct', [ProductController::class, 'addProduct']);
