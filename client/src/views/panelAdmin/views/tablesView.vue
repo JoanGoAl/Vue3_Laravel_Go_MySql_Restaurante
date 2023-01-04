@@ -1,36 +1,18 @@
-<script>
+<script setup>
 
 import { useStore } from "vuex";
 import { computed, reactive } from "vue";
 import Constant from "@/Constant";
-import Target from "@/components/panelAdmin/Target.vue"
-import Paginate from 'vuejs-paginate-next';
+import Target from "@/components/panelAdmin/TargetTable.vue"
 
 
-export default {
-  components: {
-    Target,
-    paginate: Paginate
-  },
-  methods: {
-    clickCallback(pageNumber) {
-      console.log(pageNumber);
-    }
-  },
-  setup() {
+const store = useStore();
+store.dispatch("tables/" + Constant.GET_TABLE);
+const state = reactive({
+  tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE]),
+});
 
-    const store = useStore();
-    const state = reactive({
-      tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE]),
-    });
 
-    store.dispatch("tables/" + Constant.GET_TABLE);
-
-    return {
-      state,
-    }
-  }
-}
 </script>
 
 <template >
@@ -42,6 +24,7 @@ export default {
       <div class="container_targets" v-for="(mesa, index) in state.tableslist">
         <Target :table="mesa" />
       </div>
+
       <!-- <div class="container-pagination" v-if="state.tableslist">
         <paginate :page-count="Math.ceil(state.tableslist.length / 6)" :page-range="3" :margin-pages="2"
           :click-handler="clickCallback" :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'"

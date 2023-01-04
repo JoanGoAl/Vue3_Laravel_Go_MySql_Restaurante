@@ -12,4 +12,7 @@ export default {
 
     // CLIENTS
     GET_CLIENTS: "getClients",
+
+    // PRODUCTS
+    GET_PRODUCTS_ADMIN: "getProducts",
 }
