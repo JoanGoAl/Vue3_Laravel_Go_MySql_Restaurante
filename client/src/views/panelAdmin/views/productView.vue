@@ -3,13 +3,17 @@ import { useStore } from "vuex";
 import { computed, reactive } from "vue";
 import Constant from "@/Constant";
 import TargetProduct from "@/components/panelAdmin/TargetProduct.vue"
-
+import ProductService from "@/services/productService";
 import { ref } from 'vue';
 import { Modal } from 'usemodal-vue3';
+import { createToaster } from "@meforma/vue-toaster";
+
+const toaster = createToaster({
+    position: "bottom-right",
+    duration: 3000,
+});
 
 let isVisible = ref(false);
-
-
 
 const store = useStore();
 store.dispatch("products/" + Constant.GET_PRODUCTS_ADMIN);
@@ -17,36 +21,77 @@ const state = reactive({
   productslist: computed(() => store.getters['products/' + Constant.GET_PRODUCTS_ADMIN]),
 });
 
-const createProduct = () => {
-    console.log('holaaa');
-}
 const handelOpenModal = () => {
+
+
     isVisible.value = true;
 }
 
-</script>
+const formInfo = ref({
+    nombre: '',
+    precio: '',
+    descripcion: '',
+    categoria: '',
+    img: ''
+});
 
+const createProduct = async () => {
+
+    const info = {
+        "nombre": formInfo.value.nombre,
+        "descripcion": formInfo.value.descripcion,
+        "img": formInfo.value.img,
+        "precio": formInfo.value.precio,
+        "categoria": formInfo.value.categoria
+    }
+
+    ProductService.addProduct(info)
+        .then(res => {
+            console.log(res);
+            if (res.statusText = "Created") {
+                toaster.success("Producto creado correctamente");
+                store.dispatch("products/" + Constant.GET_PRODUCTS_ADMIN);
+                isVisible.value = false;
+            } else {
+                toaster.error("Error al crear el producto");
+            }
+        }).catch(err => {
+            console.log(err);
+            toaster.error("Error al crear el producto");
+        })
+}
+
+</script>
+ 
 <template>
     <Modal v-model:visible="isVisible" 
         :okButton="{ text: 'Create', onclick: createProduct }"
         :title="`Create Product`"
     >
-        <form class="form-create-product">
+        <form class="form-create-product" >
             <div>
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" />
+                <input type="text" id="nombre" name="nombre" v-model="formInfo.nombre" />
             </div>
             <div>
                 <label for="precio">Precio</label>
-                <input type="text" id="precio" name="precio" />
+                <input type="number" id="precio" v-model="formInfo.precio" name="precio" />
             </div>
             <div>
                 <label for="descripcion">Descripcion</label>
-                <input type="text" id="descripcion" name="descripcion" />
+                <input type="text" id="descripcion" v-model="formInfo.descripcion" name="descripcion" />
             </div>
             <div>
                 <label for="categoria">Categoria</label>
-                <input type="text" id="categoria" name="categoria" />
+                <select name="" id="" v-model="formInfo.categoria">
+                    <option value="">Seleccione una categoria</option>
+                    <option  v-for="category in new Set(state.productslist.map(item =>{return item.categoria}))" :value="category">{{ category }}</option>
+                </select>
+                <!-- <input type="text" id="categoria" v-modal="formInfo.categoria" name="categoria" /> -->
+            </div>
+            <div>
+                <label for="img">Imagen</label>
+                <input type="text" id="img" v-model="formInfo.img" name="img" />
             </div>
         </form>
     </Modal>
