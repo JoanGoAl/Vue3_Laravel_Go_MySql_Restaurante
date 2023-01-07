@@ -22,9 +22,14 @@ const state = reactive({
 });
 
 const handelOpenModal = () => {
-
-
     isVisible.value = true;
+    formInfo.value = {
+        nombre: '',
+        precio: '',
+        descripcion: '',
+        categoria: '',
+        img: ''
+    }
 }
 
 const formInfo = ref({
@@ -34,6 +39,13 @@ const formInfo = ref({
     categoria: '',
     img: ''
 });
+
+const search = ref('');
+const categoryFilter = ref('');
+
+const handleCategoryFilter = (e) => {
+    categoryFilter.value = e.target.value;    
+}
 
 const createProduct = async () => {
 
@@ -59,6 +71,10 @@ const createProduct = async () => {
             console.log(err);
             toaster.error("Error al crear el producto");
         })
+}
+
+const handleSearch = (e) => {
+    search.value = e.target.value;
 }
 
 </script>
@@ -96,14 +112,25 @@ const createProduct = async () => {
         </form>
     </Modal>
     <div>
-        <div>
+        <div class="header-products">
             <h1>Productos</h1>
+            <div>
+                <input type="text" placeholder="Buscar" v-model="search" @keypress="handleSearch" />
+                <select name="" id="" @change="handleCategoryFilter" >
+                    <option value="">Seleccione una categoria</option>
+                    <option v-if="state.productslist" v-for="category in new Set(state.productslist.map(item =>{return item.categoria}))" :value="category">{{ category }}</option>
+                </select>
+            </div>
             <div>
                 <button @click="handelOpenModal">Crear Producto</button>
             </div>
         </div>
-        <div class="main-target">
-            <div class="container-target" v-for="(product, index) in state.productslist">
+        <div class="main-target" v-if="state.productslist">
+            <div class="container-target" v-for="(product, index) in state.productslist.filter(item => {
+                if (item.nombre.toLowerCase().includes(search.toLowerCase()) && (item.categoria === categoryFilter || categoryFilter === '')) {
+                    return item
+                }           
+            })">
                 <TargetProduct :product="product" />
             </div>
         </div>
@@ -111,9 +138,13 @@ const createProduct = async () => {
 </template>
 
 <style scoped>
+.header-products {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .form-create-product>div {
     margin: 10px 0;
-
 }
 
 .form-create-product>div>label {

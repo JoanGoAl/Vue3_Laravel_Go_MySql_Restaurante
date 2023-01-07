@@ -1,9 +1,9 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
 import ProductService from "@/services/productService";
-// import { createToaster } from "@meforma/vue-toaster";
-// import Constant from "@/Constant";
-// import { useStore } from "vuex";
+import { createToaster } from "@meforma/vue-toaster";
+import Constant from "@/Constant";
+import { useStore } from "vuex";
 
 const props = defineProps({
     product: {
@@ -11,25 +11,42 @@ const props = defineProps({
     }
 })
 
-// const toaster = createToaster({
-//     position: "bottom-right",
-//     duration: 3000,
-// });
+const toaster = createToaster({
+    position: "bottom-right",
+    duration: 3000,
+});
 
-// const store = useStore();
+const store = useStore();
+
+const editable = ref(false);
 
 const handleEdit = () => {
-    console.log("Edit");
+    editable.value = !editable.value;
+
+    if (!editable.value) {
+        ProductService.updateProduct(props.product.id, props.product)
+            .then(res => {
+                if (res.statusText = "Created") {
+                    toaster.success(`<b>${props.product.nombre}</b> Producto actualizado correctamente`);
+                    store.dispatch("products/" + Constant.GET_PRODUCTS_ADMIN);
+                } else {
+                    toaster.error("Error al actualizar el producto");
+                }
+            }).catch(err => {
+                console.log(err);
+                toaster.error("Error al actualizar el producto");
+            })
+    }
 }
 
 const handleDelete = () => {
 
     ProductService.deleteProduct(props.product.id)
         .then(res => {
-            console.log(res);
-            // store.dispatch("products/" + Constant.GET_PRODUCTS_ADMIN);
-            // toaster.success("Producto eliminado correctamente");
+            store.dispatch("products/" + Constant.GET_PRODUCTS_ADMIN);
+            toaster.success(`<b>${props.product.nombre}</b> Producto eliminado correctamente `)
         }).catch(err => {
+            toaster.error("Error al eliminar el producto");
             console.log(err);
         })
 
@@ -41,26 +58,37 @@ const handleDelete = () => {
 <template>
     <div>
         <div class="title">
-            <h1>{{product.nombre}}</h1>
+            <h1 v-if="!editable">{{product.nombre}}</h1>
+            <input v-else type="text" class="edit-title" v-model="product.nombre">
         </div>
         <div class="container-info">
             <div class="imagen">
                 <img :src="product.img" alt="" width="100%">
             </div>
             <div class="info">
-                <p> <b>Descripción:</b> {{product.descripcion}}</p>
+                <p v-if="!editable"> <b>Descripción:</b> {{product.descripcion}}</p>
+                <p v-else> <b>Descripción:</b> <textarea name="" id="" cols="30" rows="3" v-model="product.descripcion"></textarea> </p>
                 <br>
-                <p> <b>Precio:</b> {{product.precio}} €</p>
+                <p v-if="!editable"> <b>Precio:</b> {{product.precio}} €</p>
+                <p v-else> <b>Precio:</b> <input class="edit-number" type="number" v-model="product.precio"> €</p>
             </div>
         </div>
         <div class="container-buttons">
-            <button @click="handleEdit">Editar</button>
+            <button @click="handleEdit"> {{ !editable ? 'Editar' : 'Guardar' }} </button>
             <button @click="handleDelete">Eliminar</button>
         </div>
     </div>
 </template>
 
 <style scoped>
+.edit-title {
+    width: 100%;
+    font-size: 25px;
+}
+.edit-number {
+    width: 50px;
+    font-size: 15px;
+}
 .container-buttons {
     margin: 10px;
     text-align: right;

@@ -12,5 +12,8 @@ export default {
     },
     deleteProduct(id) {
         return Api(PRODUCT_API_ADMIN).delete(`deleteProduct/${id}`)
+    },
+    updateProduct(id, data) {
+        return Api(PRODUCT_API_ADMIN).put(`updateProduct/${id}`, data)
     }
 }
