@@ -36,3 +36,5 @@ Route::put('/updateUser', [UserController::class, 'updateUser']);
 
 Route::get('/getProducts', [ProductController::class, 'getProducts']);
 Route::post('/addProduct', [ProductController::class, 'addProduct']);
+Route::delete('/deleteProduct/{id}', [ProductController::class, 'deleteProduct']);
+Route::put('/updateProduct/{id}', [ProductController::class, 'updateProduct']);

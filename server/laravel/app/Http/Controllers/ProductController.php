@@ -24,4 +24,23 @@ class ProductController extends Controller
         $product->save();
         return $product;
     }
+
+    public function deleteProduct(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+        return $product;
+    }
+
+    public function updateProduct(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $product->nombre = $request->nombre;
+        $product->descripcion = $request->descripcion;
+        $product->img = $request->img;
+        $product->precio = $request->precio;
+        $product->categoria = $request->categoria;
+        $product->save();
+        return $product;
+    }
 }
