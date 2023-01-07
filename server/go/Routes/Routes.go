@@ -60,7 +60,7 @@ func SetupRouter() *gin.Engine {
 
 	grp_product := r.Group("/product-api")
 	{
-		grp_product.GET("/allProducts", products.GetProducts)
+		grp_product.GET("/getProducts", products.GetProducts)
 	}
 
 	return r

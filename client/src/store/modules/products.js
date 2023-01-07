@@ -7,6 +7,11 @@ export const products = {
     mutations: {
         [Constant.GET_PRODUCTS_ADMIN]: (state, payload) => { 
             if (payload) {
+                state.productsAdmin = payload;
+            }
+        },
+        [Constant.GET_PRODUCTS]: (state, payload) => {
+            if (payload) {
                 state.products = payload;
             }
         }
@@ -19,10 +24,21 @@ export const products = {
                 }).catch((err) => {
                     console.log(err);
                 });
+        },
+        [Constant.GET_PRODUCTS]: (store, payload) => {
+            ProductService.getProducts()
+                .then((res) => {
+                    store.commit(Constant.GET_PRODUCTS, res.data);
+                }).catch((err) => {
+                    console.log(err);
+                });
         }
     },
     getters: {
         getProductsAdmin(state) {
+            return state.productsAdmin;
+        },
+        getProducts(state) {
             return state.products;
         }
     }

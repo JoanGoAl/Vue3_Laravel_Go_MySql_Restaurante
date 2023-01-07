@@ -20,6 +20,7 @@
     "v-calendar": "^2.4.1",
     "vue": "^3.2.45",
     "vue-router": "^4.1.5",
+    "vue3-carousel": "^0.2.9",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

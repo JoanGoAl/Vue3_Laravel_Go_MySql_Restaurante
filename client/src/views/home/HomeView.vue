@@ -1,4 +1,16 @@
 <script setup>
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import { computed, reactive } from "vue";
+import { useStore } from "vuex";
+import Constant from "@/Constant";
+
+const store = useStore();
+store.dispatch("products/" + Constant.GET_PRODUCTS);
+const state = reactive({
+  productslist: computed(() => store.getters['products/' + Constant.GET_PRODUCTS]),
+});
+
 </script>
 
 <template>
@@ -16,10 +28,47 @@
       </div>
     </div>
   </div>
+
+  <div class="container-carrusel">
+    <Carousel :itemsToShow="3.5" :wrapAround="true" :transition="500">
+    <Slide v-for="product in state.productslist" :key="product">
+      <div class="carousel__item">
+        <img :src="product.img" alt="img" width="250"/>
+        <b> {{ product.nombre }} </b>
+      </div>
+    </Slide>
+    <template #addons>
+      <Pagination />
+      <Navigation />
+    </template>
+  </Carousel>
+  </div>
 </template>
 
 
 <style scoped>
+.carousel__icon {
+  font-size: 2rem;
+  color: white;
+  fill: white;
+}
+.carousel__item {
+  width: 80%;
+  height: 100%;
+  background-color: #a97555;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  padding: 10px;
+}
+
+.container-carrusel {
+  margin-top: 25px;
+}
+
 .container_img {
   display: flex;
   flex-direction: row;

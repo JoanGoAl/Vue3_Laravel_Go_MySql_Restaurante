@@ -15,4 +15,5 @@ export default {
 
     // PRODUCTS
     GET_PRODUCTS_ADMIN: "getProductsAdmin",
+    GET_PRODUCTS: "getProducts",
 }
