@@ -29,6 +29,10 @@ const state = reactive({
     </div>
   </div>
 
+  <div class="home-title">
+    <h1>Productos destacados</h1>
+  </div>
+
   <div class="container-carrusel">
     <Carousel :itemsToShow="3.5" :wrapAround="true" :transition="500">
     <Slide v-for="product in state.productslist" :key="product">
@@ -47,10 +51,10 @@ const state = reactive({
 
 
 <style scoped>
-.carousel__icon {
-  font-size: 2rem;
-  color: white;
-  fill: white;
+.home-title {
+  margin-top: 10px;
+  text-align: center;
+  font-size: larger;
 }
 .carousel__item {
   width: 80%;

@@ -15,6 +15,7 @@ addIcons(...Vi);
 const app = createApp(App)
 app.use(router)
 app.use(store)
+
 app.component('v-icon', OhVueIcon)
 
 

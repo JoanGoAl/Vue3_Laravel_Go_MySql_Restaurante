@@ -1,63 +1,48 @@
-<script>
+<script setup>
 import Mesa from "../../components/reservar/Mesa.vue";
 import Filtros from "../../components/reservar/Filtros.vue";
 import { useStore } from "vuex";
 import { reactive, computed } from "vue";
 import Constant from "../../Constant"
-export default {
-    components: {
-        Mesa,
-        Filtros
-    },
-    setup() {
-        const store = useStore();
-        const state = reactive({
-            tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE]),
-        });
 
-        store.dispatch("tables/" + Constant.GET_TABLE);
+const store = useStore();
+const state = reactive({
+    tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE]),
+});
 
-        return {
-            state
-        }
-    }
-}
+store.dispatch("tables/" + Constant.GET_TABLE);
 </script>
 
 <template >
-
-    <div class="container_restaurant">
+    <div class="main-reservas">
         <div class="container-filtros">
-            <Filtros />
-        </div>
+        <Filtros />
+    </div>
+    <div class="container_restaurant">
         <div class="restaurant">
             <div class="container_mesas" v-if="state.tableslist">
-                <div class="container-terraza">
-                    <div v-for="table in state.tableslist.terraza" :key="table.id">
-                        <Mesa :table="table" />
-                    </div>
-                </div>
-                <div class="container-interior">
-                    <div v-for="(table, index) in state.tableslist.comedor" :key="table.id"
-                        v-bind:class="`mesa-comedor-${index}`">
-                        <Mesa :table="table" />
-                    </div>
+                <div v-for="table in state.tableslist" :key="table.id">
+                    <Mesa :table="table" />
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </template>
 
 <style scoped>
+.main-reservas {
+    width: 100%;
+    height: 76.3vh;
+}
 .container-filtros {
-    width: 350px;
-    height: 500px;
+    width: 100%;
+    padding: 10px 25px;
     background-color: #f5f5f5;
 }
 
 .container_restaurant {
     width: 100%;
-    height: 75vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
