@@ -8,11 +8,16 @@ export const tables = {
             if (payload) {
                 state.tables = payload
             }
+        },
+        [Constant.SET_RESERVE]: (state, payload) => {
+            if (payload) {
+                state.reserve = payload
+            }
         }
     },
     actions: {
         [Constant.GET_TABLE]: (store, payload) => {
-            console.log(payload);
+            store.commit(Constant.SET_RESERVE, payload)
             TableService.getTables(payload)
                 .then((res) => {
                     store.commit(Constant.GET_TABLE, res.data)
@@ -22,8 +27,11 @@ export const tables = {
         }
     },
     getters: {
-        gatTables(state) {
+        getTables(state) {
             return state.tables
+        },
+        getReserve(state) {
+            return state.reserve
         }
     }
 }

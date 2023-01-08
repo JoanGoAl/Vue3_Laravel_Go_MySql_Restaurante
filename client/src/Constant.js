@@ -1,6 +1,6 @@
 export default {
     // Tables
-    GET_TABLE: "gatTables",
+    GET_TABLE: "getTables",
 
     // CLIENTS
     GET_CLIENTS: "getClients",

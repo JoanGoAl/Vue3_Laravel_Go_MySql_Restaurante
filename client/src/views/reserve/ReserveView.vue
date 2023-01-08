@@ -2,39 +2,74 @@
 import Mesa from "../../components/reservar/Mesa.vue";
 import Filtros from "../../components/reservar/Filtros.vue";
 import { useStore } from "vuex";
-import { reactive, computed } from "vue";
+import { reactive, computed, ref } from "vue";
 import Constant from "../../Constant"
 
 const store = useStore();
 const state = reactive({
     tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE]),
-    filterReserve: computed(() => store.getters['reserve/' + Constant.GET_RESERVE]),
+    filterReserve: computed(() => store.getters['tables/' + Constant.GET_RESERVE]),
 });
+
+const tableSelected = ref(null);
+
+const selectMesa = (id) => {
+    tableSelected.value = id;
+}
 
 </script>
 
 <template >
     <div class="main-reservas">
         <div class="container-filtros">
-        <Filtros />
-    </div>
-    <div class="container_restaurant">
-        <div class="restaurant">
+            <Filtros />
+        </div>
+        <div class="container_restaurant">
             <div class="container_mesas" v-if="state.tableslist">
-                <div v-for="table in state.tableslist" :key="table.id">
-                    <Mesa :table="table" />
+                <div class="mesa" v-for="table in state.tableslist" :key="table.id">
+                    <Mesa :table="table" :id="table.id"
+                        :selectMesa="selectMesa" />
+                </div>
+            </div>
+            <div v-else class="container-table-not-found">
+                <h1>Selecciones la hora de la reserva</h1>
+            </div>
+            <div class="container-vista-previa" v-if="state.tableslist">
+                <h1>Vista previa</h1>
+                <div v-if="tableSelected">
+                    <h1>{{ tableSelected }}</h1>
+                    <p>{{ state.filterReserve }}</p>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </template>
 
 <style scoped>
+.container-vista-previa {
+    width: 25%;
+    height: 100%;
+    margin-left: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.mesa {
+    width: 300px;
+    margin: 15px 10px;
+}
+.container-table-not-found {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .main-reservas {
     width: 100%;
-    height: 76.3vh;
+    min-height: 76.3vh;
 }
+
 .container-filtros {
     width: 100%;
     padding: 10px 25px;
@@ -42,52 +77,16 @@ const state = reactive({
 }
 
 .container_restaurant {
+    margin-top: 10px;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.restaurant {
-    width: 1300px;
-    height: 550px;
-}
-
-.container_mesas {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: row;
 }
 
-.container-terraza {
-    height: 60%;
-    width: 35%;
-    background-color: #c69272;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+.container_mesas {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.container-interior {
-    height: 100%;
-    width: 65%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    background-color: rgb(211, 211, 211);
-}
-
-.container-interior>div>div {
-    height: 100%;
-}
-
-.mesa-comedor-2 {
-    grid-area: 1 / 3 / 3 / 4;
-}
-
-.mesa-comedor-3 {
-    grid-area: 2 / 1 / 4 / 2;
-}
 </style>
