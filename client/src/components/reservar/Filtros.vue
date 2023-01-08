@@ -27,7 +27,7 @@ const handleFilter = (e) => {
 <template>
     <div>
         <form action="" @change="handleFilter">
-            <input type="date" name="date" id="" v-model="date" @change="handleDateChange">
+            <input type="date" name="date" id="" v-model="date" :min="date" @change="handleDateChange">
             <select name="time" id="" v-model="time">
                 <option value="">Hora</option>
                 <option value="13:00">13:00</option>

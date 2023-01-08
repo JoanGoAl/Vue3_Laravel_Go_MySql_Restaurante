@@ -14,6 +14,12 @@ export const products = {
             if (payload) {
                 state.products = payload;
             }
+        },
+        [Constant.GET_CATEGORIAS]: (state, payload) => {
+            if (payload) {
+                console.log(payload);
+                state.categorias = payload;
+            }
         }
     },
     actions: {  

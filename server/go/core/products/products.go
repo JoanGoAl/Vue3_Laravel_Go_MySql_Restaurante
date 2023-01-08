@@ -12,6 +12,6 @@ func GetProducts(c *gin.Context) {
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusOK, product[0:(len(product)/2)])
+		c.JSON(http.StatusOK, product)
 	}
 }

@@ -8,6 +8,7 @@ export default {
     // PRODUCTS
     GET_PRODUCTS_ADMIN: "getProductsAdmin",
     GET_PRODUCTS: "getProducts",
+    GET_CATEGORIAS: "getCategorias",
 
     // RESERVE
     SET_RESERVE: "setReserve",

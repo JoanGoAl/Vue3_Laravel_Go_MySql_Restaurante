@@ -8,7 +8,6 @@ import (
 )
 
 func GetAllTables(table *[]Table, filter *Filter) (err error) {
-
 	var query string
 
 	// TODO - Fix this query
