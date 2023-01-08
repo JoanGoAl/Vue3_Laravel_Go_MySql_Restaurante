@@ -18,6 +18,9 @@ import { RouterLink } from 'vue-router'
                 <RouterLink to="/reserve">RESERVAR</RouterLink>
             </div>
             <div nav_ancor>
+                <RouterLink to="/pedido">PEDIDOS</RouterLink>
+            </div>
+            <div nav_ancor>
                 <RouterLink to="/profile">LOGIN</RouterLink>
             </div>
         </nav>

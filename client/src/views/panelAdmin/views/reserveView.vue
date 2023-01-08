@@ -55,7 +55,6 @@ const handleUpdate = (id) => {
                         <td class="status-column">
                             <div v-if="!item.status" class="container-pendiente">Pendiente</div>
                             <div v-if="item.status" class="container-aceptado">Aceptado</div>
-
                             <button v-if="!item.status" @click="handleUpdate(item.id)">Aceptar</button>
                         </td>
                     </tr>

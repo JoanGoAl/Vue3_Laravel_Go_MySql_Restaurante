@@ -12,5 +12,6 @@ export default {
     // RESERVE
     SET_RESERVE: "setReserve",
     GET_RESERVAS: "getReservas",
+    GET_RESERVE: "getReserve",
 
 }

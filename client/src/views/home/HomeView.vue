@@ -24,7 +24,9 @@ const state = reactive({
     </div>
     <div class="img_right">
       <div class="text_img">
-        <span>Realizar pedido</span>
+        <RouterLink to="/pedido">
+          <span>Realizar pedido</span>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -35,17 +37,17 @@ const state = reactive({
 
   <div class="container-carrusel">
     <Carousel :itemsToShow="3.5" :wrapAround="true" :transition="500">
-    <Slide v-for="product in state.productslist" :key="product">
-      <div class="carousel__item">
-        <img :src="product.img" alt="img" width="250"/>
-        <b> {{ product.nombre }} </b>
-      </div>
-    </Slide>
-    <template #addons>
-      <Pagination />
-      <Navigation />
-    </template>
-  </Carousel>
+      <Slide v-for="product in state.productslist" :key="product">
+        <div class="carousel__item">
+          <img :src="product.img" alt="img" width="250" />
+          <b> {{ product.nombre }} </b>
+        </div>
+      </Slide>
+      <template #addons>
+        <Pagination />
+        <Navigation />
+      </template>
+    </Carousel>
   </div>
 </template>
 
@@ -56,6 +58,7 @@ const state = reactive({
   text-align: center;
   font-size: larger;
 }
+
 .carousel__item {
   width: 80%;
   height: 100%;

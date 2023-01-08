@@ -8,7 +8,7 @@
         </RouterLink>
         <br>
         <br>
-        <p>© 2022 La posada Serril. All right reserved</p>
+        <p>© 2022 La posada del Serril. All right reserved</p>
     </div>
 </template>
 
