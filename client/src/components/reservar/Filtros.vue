@@ -1,5 +1,9 @@
 <script setup>
 import { ref } from 'vue';
+import Constant from '@/Constant';
+import { useStore } from "vuex";
+
+const store = useStore();
 
 const year = new Date().getFullYear()
 const month = (new Date().getMonth() + 1) < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1;
@@ -7,14 +11,15 @@ const day = (new Date().getDate()) < 10 ? `0${new Date().getDate()}` : new Date(
 
 
 const date = ref(`${year}-${month}-${day}`);
-const time = ref('13:00');
+const time = ref('');
+const site = ref('%');
 const handleFilter = (e) => {
     let info = {
         date: date.value,
-        time: time.value
+        time: time.value,
+        site: site.value
     }
-    
-    console.log(info);
+    store.dispatch("tables/" + Constant.GET_TABLE, info);
 }
 </script>
 
@@ -30,6 +35,11 @@ const handleFilter = (e) => {
                 <option value="20:30">20:30</option>
                 <option value="21:30">21:30</option>
                 <option value="22:30">22:30</option>
+            </select>
+            <select name="site" id="" v-model="site">
+                <option value="%">Sitio</option>
+                <option value="Comedor">Comedor</option>
+                <option value="Terraza">Terraza</option>
             </select>
         </form>
     </div>

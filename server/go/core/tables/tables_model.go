@@ -7,6 +7,12 @@ type Table struct {
 	Img      string `json:"img"`
 }
 
+type Filter struct {
+	Date string `json:"date"`
+	Time string `json:"time"`
+	Site string `json:"site"`
+}
+
 func (b *Table) TableName() string {
 	return "tables"
 }

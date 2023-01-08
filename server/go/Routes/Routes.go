@@ -40,7 +40,7 @@ func SetupRouter() *gin.Engine {
 
 	grp_table := r.Group("/table-api")
 	{
-		grp_table.GET("/allTables", tables.GetTables)
+		grp_table.POST("/getTables", tables.GetTables)
 		grp_table.POST("/createTable", tables.CreateTable)
 		grp_table.DELETE("/deleteTable/:id", tables.DeleteTable)
 		grp_table.PUT("/updateTable/:id", tables.UpdateTable)

@@ -12,7 +12,8 @@ export const tables = {
     },
     actions: {
         [Constant.GET_TABLE]: (store, payload) => {
-            TableService.getTables()
+            console.log(payload);
+            TableService.getTables(payload)
                 .then((res) => {
                     store.commit(Constant.GET_TABLE, res.data)
                 }).catch((err) => {

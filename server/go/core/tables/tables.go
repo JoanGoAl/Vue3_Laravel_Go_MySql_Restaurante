@@ -11,7 +11,12 @@ import (
 
 func GetTables(c *gin.Context) {
 	var table []Table
-	err := GetAllTables(&table)
+
+	var filter Filter
+	c.BindJSON(&filter)
+
+	err := GetAllTables(&table, &filter)
+
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {

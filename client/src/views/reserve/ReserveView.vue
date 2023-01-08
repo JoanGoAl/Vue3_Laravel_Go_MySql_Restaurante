@@ -8,9 +8,9 @@ import Constant from "../../Constant"
 const store = useStore();
 const state = reactive({
     tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE]),
+    filterReserve: computed(() => store.getters['reserve/' + Constant.GET_RESERVE]),
 });
 
-store.dispatch("tables/" + Constant.GET_TABLE);
 </script>
 
 <template >

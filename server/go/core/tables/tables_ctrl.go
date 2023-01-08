@@ -7,10 +7,18 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func GetAllTables(table *[]Table) (err error) {
-	if err = Config.DB.Find(table).Error; err != nil {
+func GetAllTables(table *[]Table, filter *Filter) (err error) {
+
+	var query string
+
+	// TODO - Fix this query
+	query = "SELECT * FROM tables WHERE type LIKE '" + filter.Site + "' " +
+		"AND id NOT IN (SELECT idtable FROM reservas WHERE date = '" + filter.Date + "' AND time = '" + filter.Time + "');"
+
+	if err = Config.DB.Raw(query).Scan(&table).Error; err != nil {
 		return err
 	}
+
 	return nil
 }
 
