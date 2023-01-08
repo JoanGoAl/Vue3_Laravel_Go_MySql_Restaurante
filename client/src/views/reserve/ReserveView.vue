@@ -4,6 +4,9 @@ import Filtros from "../../components/reservar/Filtros.vue";
 import { useStore } from "vuex";
 import { reactive, computed, ref } from "vue";
 import Constant from "../../Constant"
+import { createToaster } from "@meforma/vue-toaster";
+import { Modal } from 'usemodal-vue3';
+import ReserveService from "../../services/reserveService";
 
 const store = useStore();
 const state = reactive({
@@ -11,10 +14,56 @@ const state = reactive({
     filterReserve: computed(() => store.getters['tables/' + Constant.GET_RESERVE]),
 });
 
+let isVisible = ref(false);
+
+const handelOpenModal = () => {
+    if (!state.filterReserve.time) {
+        toaster.error("Seleccione la hora de la reserva");
+        return
+    } 
+
+    if (!state.filterReserve.date) {
+        toaster.error("Seleccione la fecha de la reserva");
+        return
+    }
+    isVisible.value = true;
+}
+
+const toaster = createToaster({
+    position: "bottom-right",
+    duration: 3000,
+});
+
 const tableSelected = ref(null);
 
 const selectMesa = (id) => {
     tableSelected.value = id;
+}
+
+const getTable = (id) => {
+    return state.tableslist.find(table => table.id === id);
+}
+
+const hundelSend = () => {
+    let item = {
+        idtable: tableSelected.value,
+        idclient: 1, // TODO: cambiar por el id del cliente
+        date: state.filterReserve.date,
+        time: state.filterReserve.time,
+        status: false
+    }
+    ReserveService.setReserve(item).then(res => {
+        if (res.status === 200) {
+            store.dispatch("tables/" + Constant.GET_TABLE, state.filterReserve);
+            toaster.success("Reserva realizada con exito");
+            isVisible.value = false;
+        } else {
+            toaster.error("Error al realizar la reserva");
+        }
+    }).catch(err => {
+        console.log(err);
+    })
+
 }
 
 </script>
@@ -34,15 +83,34 @@ const selectMesa = (id) => {
             <div v-else class="container-table-not-found">
                 <h1>Selecciones la hora de la reserva</h1>
             </div>
-            <div class="container-vista-previa" v-if="state.tableslist">
+            <div class="container-vista-previa" v-if="state.tableslist && getTable(tableSelected)">
                 <h1>Vista previa</h1>
-                <div v-if="tableSelected">
-                    <h1>{{ tableSelected }}</h1>
-                    <p>{{ state.filterReserve }}</p>
+                <div>
+                    <h1>Mesa: {{ getTable(tableSelected).id }}</h1>
+                    <img :src="`../../../${getTable(tableSelected).img}.png`" alt="" width="150">
+                    <div>
+                        <p><b>Ubicacion:</b> {{ getTable(tableSelected).type }}</p>
+                        <p><b>Comensales:</b> {{ getTable(tableSelected).capacity }}</p>
+                    </div>
+                    <div>
+                        <p><b>Fecha:</b> {{ state.filterReserve.date }}</p>
+                        <p><b>Hora:</b> {{ state.filterReserve.time }}</p>
+                    </div>
+                </div>
+                <div class="container-button-reserve">
+                    <button @click="handelOpenModal">Reservar</button>
                 </div>
             </div>
         </div>
     </div>
+    <Modal v-model:visible="isVisible" 
+        title="Reservar"
+        :okButton="{ text: 'Reservar', onclick: hundelSend }"
+    >
+        <div>
+            <b>¿Quieres confirmar tu reserva para el dia {{ state.filterReserve.date }} a las {{ state.filterReserve.time }}?</b>
+        </div>
+    </Modal>
 </template>
 
 <style scoped>

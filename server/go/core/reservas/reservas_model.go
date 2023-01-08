@@ -6,6 +6,7 @@ type Reserva struct {
 	Idclient uint   `json:"idclient"`
 	Date     string `json:"date"`
 	Time     string `json:"time"`
+	Status   bool   `json:"status"`
 }
 
 func (b *Reserva) TableName() string {
