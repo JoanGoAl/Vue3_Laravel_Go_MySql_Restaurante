@@ -6,7 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func GetAllReservas(reserva *Reserva, id string) (err error) {
+func GetOneReservas(reserva *Reserva, id string) (err error) {
 	if err = Config.DB.Where("id = ?", id).First(reserva).Error; err != nil {
 		return err
 	}

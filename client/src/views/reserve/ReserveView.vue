@@ -6,7 +6,7 @@ import { reactive, computed, ref } from "vue";
 import Constant from "../../Constant"
 import { createToaster } from "@meforma/vue-toaster";
 import { Modal } from 'usemodal-vue3';
-import ReserveService from "../../services/reserveService";
+import ReserveService from "@/services/reservaService";
 
 const store = useStore();
 const state = reactive({

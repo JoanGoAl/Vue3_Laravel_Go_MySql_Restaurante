@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\ReservaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,3 +38,7 @@ Route::get('/getProducts', [ProductController::class, 'getProducts']);
 Route::post('/addProduct', [ProductController::class, 'addProduct']);
 Route::delete('/deleteProduct/{id}', [ProductController::class, 'deleteProduct']);
 Route::put('/updateProduct/{id}', [ProductController::class, 'updateProduct']);
+
+// Reserves
+Route::get('/getReservas', [ReservaController::class, 'getReservas']);
+Route::put('/changeStatusReserva/{id}', [ReservaController::class, 'changeStatusReserva']);

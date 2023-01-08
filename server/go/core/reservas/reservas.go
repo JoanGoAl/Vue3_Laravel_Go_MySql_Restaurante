@@ -9,7 +9,7 @@ import (
 func GetReserva(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var reserva Reserva
-	err := GetAllReservas(&reserva, id)
+	err := GetOneReservas(&reserva, id)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
