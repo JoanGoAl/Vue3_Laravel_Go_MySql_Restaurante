@@ -3,6 +3,8 @@ import { useStore } from "vuex";
 import { reactive, computed, ref } from "vue";
 import Constant from "../../Constant"
 import useFilter from "@/composables/useFilter"
+import Carrito from "../../components/pedido/CarritoView.vue"
+import PoductTarget from "../../components/pedido/ProductoTarget.vue"
 
 const store = useStore();
 store.dispatch("products/" + Constant.GET_PRODUCTS);
@@ -36,43 +38,19 @@ const handleFilter = (products) => {
                     </option>
                 </select>
             </div>
-            <div v-if="state.productList">
-                <div v-for="product in handleFilter(state.productList)" class="product">
-                    <img v-bind:src="product.img" alt="" width="150">
-                    <div class="info-producto">
-                        <h1 class="nombre-producto">{{ product.nombre }}</h1>
-                        <h2 class="precio-producto">{{ product.precio }} €</h2>
-                    </div>
-                    <div class="info-producto">
-                        <h3 class="nombre-descripcion">{{ product.descripcion }}</h3>
-                        <h3>Tipo producto: {{ product.categoria }}</h3>
-                    </div>
-                    <div class="info-producto-añadir">
-                        <div style="margin-bottom: 5px;">
-                            <label for="cantidad" style="margin-right: 5px;">Cantidad</label>
-                            <input type="number" name="cantidad" id="cantidad" min="1" max="10" value="1" class="cantidad-producto">
-                        </div>
-                        <button class="btn btn-primary">Añadir al carrito</button>
-                    </div>
+            <div v-if="handleFilter(state.productList)">
+                <div v-for="product in handleFilter(state.productList)">
+                    <PoductTarget :product="product" /> 
                 </div>
             </div>
         </div>
         <div class="container-carrito">
-
+            <Carrito />
         </div>
     </div>
 </template>
 
 <style scoped>
-.info-producto-añadir {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.precio-producto {
-    text-align: center;
-}
 .container-filtros {
     width: 100%;
     height: 50px;
@@ -81,21 +59,11 @@ const handleFilter = (products) => {
     align-items: center;
     justify-content: center;
 }
-.product {
-    width: 100%;
-    height: 150px;
-    background-color: white;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-}
-
 .container-carrito {
     position: fixed;
     right: 0;
-    background-color: blue;
+    margin-top: 10px;
+    background-color: white;
     height: 70%;
     width: 25%;
 }

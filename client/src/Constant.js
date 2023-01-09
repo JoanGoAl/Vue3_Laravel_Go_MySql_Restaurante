@@ -15,4 +15,9 @@ export default {
     GET_RESERVAS: "getReservas",
     GET_RESERVE: "getReserve",
 
+    // CART
+    ADD_TO_CART: "addToCart",
+    GET_CART: "getCart",
+    REMOVE_FROM_CART: "removeFromCart",
+
 }
