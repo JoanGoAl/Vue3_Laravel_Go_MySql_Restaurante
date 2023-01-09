@@ -5,6 +5,7 @@ import PanelAdminView from '../views/panelAdmin/panelAdminView.vue'
 import NotFoundView from '../views/notFound/notFoundView.vue'
 import PedidoView from '../views/pedido/PedidoView.vue'
 import LoginView from '../views/login/LoginView.vue'
+import RegisterView from '../views/login/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,7 @@ const router = createRouter({
     { path: '/pedido', name: 'pedido', component: PedidoView },
     { path: '/profile', name: 'profile', component: ReserveView },
     { path: '/login', name: 'login', component: LoginView },
+    { path: '/register', name: 'register', component: RegisterView },
     {
       path: '/admin',
       name: 'panelAdmin',

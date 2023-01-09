@@ -1,35 +1,42 @@
 <script setup>
 
-const handleLogin = (e) => {
+const handleRegister = (e) => {
     e.preventDefault();
 
 }
+
+
 </script>
 
 <template>
-    <div class="main-login">
-        <div login>
+    <div class="main-register">
+        <div register>
             <div class="title-container">
-                <h1>LOGIN</h1>
+                <h1>REGISTER</h1>
             </div>
             <div class="form-container">
                 <form action="">
                     <div formContianer>
                         <div>
-                            <label for="username">Username</label>
-                            <input type="text" name="username" id="username">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email">
                         </div>
                         <br>
                         <div>
                             <label for="password">Contraseña</label>
                             <input type="password" name="password" id="password">
                         </div>
+                        <br>
+                        <div>
+                            <label for="password">Repetir Contraseña</label>
+                            <input type="password" name="password" id="password">
+                        </div>
                         <div class="container-button">
-                            <button @click="handleLogin">Login</button>
+                            <button @click="handleRegister">Register</button>
                         </div>
                         <div class="contianer-route">
-                            <RouterLink to="/register">
-                                <span>¿No tienes cuenta?</span>
+                            <RouterLink to="/login">
+                                <span>¿Ya tienes cuenta?</span>
                             </RouterLink>
                         </div>
                     </div>
@@ -39,7 +46,7 @@ const handleLogin = (e) => {
     </div>
 </template>
 
-<style scoped>
+<style>
 .contianer-route {
     margin-top: 15px;
     text-align: right;
@@ -85,7 +92,7 @@ input {
     margin: 20px 0;
 }
 
-.main-login {
+.main-register {
     height: 79vh;
     display: flex;
     justify-content: center;
@@ -99,7 +106,7 @@ input {
     text-align: center;
 }
 
-[login] {
+[register] {
     background-color: hsla(0, 0%, 0%, 0.7);
     width: 500px;
     border-radius: 10px;

@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: center;
     width: 98vw;
+    height: 79vh;
     font-size: 50px;
-    margin-top: 150px;
 }
 </style>
