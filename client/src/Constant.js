@@ -1,6 +1,7 @@
 export default {
     // Tables
     GET_TABLE: "getTables",
+    GET_TABLE_ADMIN: "getTablesAdmin",
 
     // CLIENTS
     GET_CLIENTS: "getClients",

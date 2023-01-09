@@ -14,6 +14,11 @@ export const tables = {
             if (payload) {
                 state.reserve = payload
             }
+        },
+        [Constant.GET_TABLE_ADMIN]: (state, payload) => {
+            if (payload) {
+                state.tablesAdmin = payload
+            }
         }
     },
     actions: {
@@ -25,6 +30,14 @@ export const tables = {
                 }).catch((err) => {
                     console.log(err)
                 });
+        },
+        [Constant.GET_TABLE_ADMIN]: (store) => {
+            TableService.getTablesAdmin()
+                .then((res) => {
+                    store.commit(Constant.GET_TABLE_ADMIN, res.data)
+                }).catch((err) => {
+                    console.log(err)
+                });
         }
     },
     getters: {
@@ -33,6 +46,10 @@ export const tables = {
         },
         getReserve(state) {
             return state.reserve
+        },
+        getTablesAdmin(state) {
+            console.log(state.tablesAdmin);
+            return state.tablesAdmin
         }
     }
 }

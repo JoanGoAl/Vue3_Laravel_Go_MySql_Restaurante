@@ -6,9 +6,9 @@ import Constant from "@/Constant";
 import Target from "@/components/panelAdmin/TargetTable.vue"
 
 const store = useStore();
-store.dispatch("tables/" + Constant.GET_TABLE);
+store.dispatch("tables/" + Constant.GET_TABLE_ADMIN);
 const state = reactive({
-  tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE]),
+  tableslist: computed(() => store.getters['tables/' + Constant.GET_TABLE_ADMIN]),
 });
 
 
