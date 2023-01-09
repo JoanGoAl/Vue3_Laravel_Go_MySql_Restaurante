@@ -12,7 +12,9 @@ func SetPedido(c *gin.Context) {
 	err := CreatePedido(&pedido)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
+		return
 	} else {
 		c.JSON(http.StatusOK, pedido)
+		return
 	}
 }

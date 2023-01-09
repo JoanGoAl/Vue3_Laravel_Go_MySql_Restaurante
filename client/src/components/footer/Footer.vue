@@ -4,7 +4,7 @@
 <template>
     <div class="container-footer">
         <RouterLink to="/admin">
-          <span>¿Eres administrador?</span>
+            <span>¿Eres administrador?</span>
         </RouterLink>
         <br>
         <br>
@@ -17,9 +17,10 @@ a {
     color: #fff;
     text-decoration: none;
 }
+
 .container-footer {
     height: 10.5vh;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     background-color: #a97555;
     color: #fff;
     padding: 20px;
