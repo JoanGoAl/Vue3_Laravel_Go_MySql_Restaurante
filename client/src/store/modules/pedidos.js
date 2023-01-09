@@ -1,8 +1,7 @@
 import Constant from "../../Constant";
 
-import ProductSerice from "@/services/productService";
-
-export const carrito = {
+import PedidoService from "@/services/pedidoService";
+export const pedidos = {
     namespaced: true,
     state: {
         cart: []
@@ -34,21 +33,10 @@ export const carrito = {
         },
         [Constant.CLEAR_CART]: (state) => {
             state.cart = [];
+        },
+        [Constant.GET_PEDIDOS_ADMIN]: (state, payload) => {
+            state.pedidos = payload;
         }
-        // [Constant.REMOVE_FROM_CART]: (state, payload) => {
-        //     if (state.cart.length == 0) {
-        //         return;
-        //     }
-        //     for (let i = 0; i < state.cart.length; i++) {
-        //         if (state.cart[i].id == payload.product.id) {
-        //             state.cart[i].cantidad -= payload.cant;
-        //             if (state.cart[i].cantidad <= 0) {
-        //                 state.cart.splice(i, 1);
-        //             }
-        //             return;
-        //         }
-        //     }
-        // }
     },
     actions: {
         [Constant.ADD_TO_CART]: (store, payload) => {
@@ -63,6 +51,11 @@ export const carrito = {
         },
         [Constant.CLEAR_CART]: (store) => {
             store.commit(Constant.CLEAR_CART);
+        },
+        [Constant.GET_PEDIDOS_ADMIN]: (store) => {
+            PedidoService.getPedidosAdmin().then((response) => {
+                store.commit(Constant.GET_PEDIDOS_ADMIN, response.data);
+            });
         }
         // [Constant.REMOVE_FROM_CART]: (store, payload) => {
         //     if (payload) {
@@ -73,6 +66,9 @@ export const carrito = {
     getters: {
         getCart(state) {
             return state.cart;
+        },
+        getPedidosAdmin(state) {
+            return state.pedidos;
         }
     }
 }

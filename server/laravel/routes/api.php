@@ -6,6 +6,7 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\PedidoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,3 +43,7 @@ Route::put('/updateProduct/{id}', [ProductController::class, 'updateProduct']);
 // Reserves
 Route::get('/getReservas', [ReservaController::class, 'getReservas']);
 Route::put('/changeStatusReserva/{id}', [ReservaController::class, 'changeStatusReserva']);
+
+// Orders
+Route::get('/getPedidos', [PedidoController::class, 'getPedidos']);
+Route::put('/changeStatusPedido/{id}', [PedidoController::class, 'changeStatusPedido']);

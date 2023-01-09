@@ -7,5 +7,11 @@ const PEDIDO_API = secret.GO_API_URL + '/pedidos-api'
 export default {
     setPedido(data) {
         return Api(PEDIDO_API).post('setPedido', data)
+    },
+    getPedidosAdmin() {
+        return Api(PEDIDO_API_ADMIN).get('getPedidos')
+    },
+    changeStatusPedido(id) {
+        return Api(PEDIDO_API_ADMIN).put(`changeStatusPedido/${id}`)
     }
 }

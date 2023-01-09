@@ -22,4 +22,7 @@ export default {
     CHANGE_CANT: "changeCant",
     CLEAR_CART: "clearCart",
 
+    // PEDIDOS
+    GET_PEDIDOS_ADMIN: "getPedidosAdmin",
+
 }

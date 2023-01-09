@@ -13,7 +13,7 @@ const toaster = createToaster({
     duration: 3000,
 });
 
-let isVisible = ref(false);
+const isVisible = ref(false);
 
 const store = useStore();
 store.dispatch("products/" + Constant.GET_PRODUCTS_ADMIN);

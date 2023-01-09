@@ -16,7 +16,7 @@ const store = useStore();
 const cant = ref('1')
 
 const addCart = (product) => {
-    store.dispatch("carrito/" + Constant.ADD_TO_CART, {product, cant: parseInt(cant.value)})
+    store.dispatch("pedidos/" + Constant.ADD_TO_CART, {product, cant: parseInt(cant.value)})
 }
 
 const setCant = (e) => {

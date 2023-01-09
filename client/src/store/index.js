@@ -4,7 +4,7 @@ import { tables } from './modules/tables'
 import { clients } from './modules/clients'
 import { products } from "./modules/products";
 import {reservas} from "./modules/reservas";
-import { carrito } from "./modules/carrito";
+import { pedidos } from "./modules/pedidos";
 
 export default Vuex.createStore({
 
@@ -13,7 +13,7 @@ export default Vuex.createStore({
         clients,
         products,
         reservas,
-        carrito
+        pedidos
     }
 
 });

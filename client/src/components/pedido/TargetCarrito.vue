@@ -6,7 +6,7 @@ import Constant from "../../Constant"
 const store = useStore();
 
 const changeCant = (e) => {
-    store.dispatch("carrito/" + Constant.CHANGE_CANT, {product: props.product, cant: parseInt(e.target.value)})
+    store.dispatch("pedidos/" + Constant.CHANGE_CANT, {product: props.product, cant: parseInt(e.target.value)})
 }
 
 const props = defineProps({

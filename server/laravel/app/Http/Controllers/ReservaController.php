@@ -19,8 +19,5 @@ class ReservaController extends Controller
         $reserva->status = 1;
         $reserva->save();
         return $reserva;
-        // $reserva->status = 1;
-        // $reserva->save();
-        // return $reserva;
     }
 }

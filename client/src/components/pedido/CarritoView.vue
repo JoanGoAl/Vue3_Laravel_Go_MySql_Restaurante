@@ -8,7 +8,7 @@ import PedidoService from "@/services/PedidoService";
 const store = useStore();
 
 const state = reactive({
-    cart: computed(() => store.getters['carrito/' + Constant.GET_CART]),
+    cart: computed(() => store.getters['pedidos/' + Constant.GET_CART]),
 })
 
 const getNumberOfProducts = () => {
@@ -20,7 +20,7 @@ const getNumberOfProducts = () => {
 }
 
 const delteCart = () => {
-    store.dispatch("carrito/" + Constant.CLEAR_CART);
+    store.dispatch("pedidos/" + Constant.CLEAR_CART);
 }
 
 const sendCard = () => {
