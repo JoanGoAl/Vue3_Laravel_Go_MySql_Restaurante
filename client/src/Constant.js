@@ -19,5 +19,7 @@ export default {
     ADD_TO_CART: "addToCart",
     GET_CART: "getCart",
     REMOVE_FROM_CART: "removeFromCart",
+    CHANGE_CANT: "changeCant",
+    CLEAR_CART: "clearCart",
 
 }

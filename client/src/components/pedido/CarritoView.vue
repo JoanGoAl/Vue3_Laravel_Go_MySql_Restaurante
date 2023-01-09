@@ -18,6 +18,14 @@ const getNumberOfProducts = () => {
     return temp
 }
 
+const delteCart = () => {
+    store.dispatch("carrito/" + Constant.CLEAR_CART);
+}
+
+const sendCard = () => {
+    console.log(state.cart);
+}
+
 </script>
 
 <template>
@@ -32,24 +40,52 @@ const getNumberOfProducts = () => {
             </div>
         </div>
         <div class="container-buttons">
-
+            <div>
+                <h3>Total: {{ state.cart.reduce((acc, item) => acc + (item.precio * item.cantidad), 0) }} €</h3>
+            </div>
+            <div>
+                <button class="delete" @click="delteCart">Eliminar carrito</button>
+                <button class="comprar" @click="sendCard">Comprar</button>
+            </div>
         </div>
     </div>
 </template>
 
 <style scoped>
+.comprar {
+    padding: 5px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.comprar:hover, .delete:hover {
+    cursor: pointer;
+}
+.delete {
+    padding: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+.container-buttons {
+    display: flex;
+    justify-content: space-between;
+}
 .container-carrito {
     height: 100%;
 }
 
 .container-buttons {
     height: 10%;
-    background-color: blue;
 }
 .container-products {
-    background-color: red;
     height: 80%;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
 }
 .title {
     height: 10%;

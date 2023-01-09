@@ -56,14 +56,19 @@ const setCant = (e) => {
 .precio-producto {
     text-align: center;
 }
+.product>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .product {
     width: 100%;
     height: 150px;
     background-color: white;
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 10% 35% 35% 20%;
     padding: 0 10px;
 }
 </style>
