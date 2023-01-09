@@ -3,6 +3,7 @@ import { useStore } from "vuex";
 import { reactive, computed, ref } from "vue";
 import Constant from "../../Constant"
 import TargetCarrito from "./TargetCarrito.vue";
+import PedidoService from "@/services/PedidoService";
 
 const store = useStore();
 
@@ -23,7 +24,19 @@ const delteCart = () => {
 }
 
 const sendCard = () => {
-    console.log(state.cart);
+    let info = {
+        idcliente: 1,
+        pedido: JSON.stringify(state.cart),
+        precio: state.cart.reduce((acc, item) => acc + (item.precio * item.cantidad), 0),
+        status: 0
+    }
+
+    PedidoService.setPedido(info)
+        .then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
 }
 
 </script>
@@ -36,7 +49,7 @@ const sendCard = () => {
         </div>
         <div class="container-products">
             <div v-for="producto in state.cart">
-                <TargetCarrito :product="producto"/>
+                <TargetCarrito :product="producto" />
             </div>
         </div>
         <div class="container-buttons">
@@ -61,9 +74,11 @@ const sendCard = () => {
     margin-right: 15px;
 }
 
-.comprar:hover, .delete:hover {
+.comprar:hover,
+.delete:hover {
     cursor: pointer;
 }
+
 .delete {
     padding: 5px;
     background-color: red;
@@ -72,10 +87,12 @@ const sendCard = () => {
     border-radius: 5px;
     margin-right: 15px;
 }
+
 .container-buttons {
     display: flex;
     justify-content: space-between;
 }
+
 .container-carrito {
     height: 100%;
 }
@@ -83,10 +100,12 @@ const sendCard = () => {
 .container-buttons {
     height: 10%;
 }
+
 .container-products {
     height: 80%;
     overflow-y: scroll;
 }
+
 .title {
     height: 10%;
     text-align: center;

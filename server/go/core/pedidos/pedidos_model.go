@@ -2,7 +2,7 @@ package pedidos
 
 type Pedido struct {
 	Id        uint    `json:"id"`
-	IdCliente uint    `json:"id_cliente"`
+	Idcliente uint    `json:"idcliente"`
 	Pedido    string  `json:"pedido"`
 	Precio    float32 `json:"precio"`
 	Status    bool    `json:"status"`
