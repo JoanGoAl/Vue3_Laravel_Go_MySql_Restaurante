@@ -19,11 +19,11 @@ const toaster = createToaster({
     duration: 3000,
 });
 
-const handleUpdate = (id) => {
-    PedidoService.changeStatusPedido(id)
+const handleUpdate = (id, status) => {
+    PedidoService.changeStatusPedido(id, { status })
         .then((res) => {
-            console.log(res);
-            toaster.success("Reserva aceptada");
+            if (status == -1) toaster.success("Reserva cancelada");
+            if (status == 1) toaster.success("Reserva aceptada");
             store.dispatch("pedidos/" + Constant.GET_PEDIDOS_ADMIN);
         }).catch(err => {
             console.log(err);
@@ -77,9 +77,13 @@ const handelOpenModal = (pedido) => {
                         <td><button @click="handelOpenModal(item.pedido)">Ver Pedido</button></td>
                         <td>{{ item.precio }}</td>
                         <td class="status-column">
-                            <div v-if="!item.status" class="container-pendiente">Pendiente</div>
-                            <div v-if="item.status" class="container-aceptado">Aceptado</div>
-                            <button v-if="!item.status" @click="handleUpdate(item.id)">Aceptar</button>
+                            <div v-if="item.status == 0" class="container-pendiente">Pendiente</div>
+                            <div v-if="item.status == 1" class="container-aceptado">Aceptado</div>
+                            <div v-if="item.status == -1" class="container-rechazada">Rechazada</div>
+                            <div v-if="!item.status">
+                                <button @click="handleUpdate(item.id, -1)">Rechazar</button>
+                                <button @click="handleUpdate(item.id, 1)">Aceptar</button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -90,12 +94,20 @@ const handelOpenModal = (pedido) => {
 </template>
 
 <style scoped>
+.container-rechazada {
+    padding: 5px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
 .contianer-target-cart {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     border-bottom: 1px solid black;
     padding: 10px;
 }
+
 .container-aceptado {
     padding: 5px;
     background-color: #4CAF50;

@@ -8,7 +8,7 @@ import { createToaster } from "@meforma/vue-toaster";
 const store = useStore();
 store.dispatch("reservas/" + Constant.GET_RESERVAS);
 const state = reactive({
-  reserveslist: computed(() => store.getters['reservas/' + Constant.GET_RESERVAS]),
+    reserveslist: computed(() => store.getters['reservas/' + Constant.GET_RESERVAS]),
 });
 
 const toaster = createToaster({
@@ -16,8 +16,8 @@ const toaster = createToaster({
     duration: 3000,
 });
 
-const handleUpdate = (id) => {
-    ReservaService.changeStatusReserva(id)
+const handleUpdate = (id, status) => {
+    ReservaService.changeStatusReserva(id, { status })
         .then((res) => {
             console.log(res);
             toaster.success("Reserva aceptada");
@@ -53,9 +53,13 @@ const handleUpdate = (id) => {
                         <td>{{ item.date }}</td>
                         <td>{{ item.time }}</td>
                         <td class="status-column">
-                            <div v-if="!item.status" class="container-pendiente">Pendiente</div>
-                            <div v-if="item.status" class="container-aceptado">Aceptado</div>
-                            <button v-if="!item.status" @click="handleUpdate(item.id)">Aceptar</button>
+                            <div v-if="item.status == 0" class="container-pendiente">Pendiente</div>
+                            <div v-if="item.status == 1" class="container-aceptado">Aceptado</div>
+                            <div v-if="item.status == -1" class="container-rechazada">Rechazada</div>
+                            <div v-if="!item.status">
+                                <button @click="handleUpdate(item.id, -1)">Rechazar</button>
+                                <button @click="handleUpdate(item.id, 1)">Aceptar</button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -66,6 +70,13 @@ const handleUpdate = (id) => {
 </template>
 
 <style scoped>
+.container-rechazada {
+    padding: 5px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
 .container-aceptado {
     padding: 5px;
     background-color: #4CAF50;
@@ -73,12 +84,14 @@ const handleUpdate = (id) => {
     border-radius: 5px;
 
 }
+
 .container-pendiente {
     padding: 5px;
     background-color: #f44336;
     color: white;
     border-radius: 5px;
 }
+
 .status-column {
     display: flex;
     justify-content: space-between;

@@ -11,7 +11,7 @@ export default {
     getPedidosAdmin() {
         return Api(PEDIDO_API_ADMIN).get('getPedidos')
     },
-    changeStatusPedido(id) {
-        return Api(PEDIDO_API_ADMIN).put(`changeStatusPedido/${id}`)
+    changeStatusPedido(id, status) {
+        return Api(PEDIDO_API_ADMIN).put(`changeStatusPedido/${id}`, status)
     }
 }

@@ -10,7 +10,6 @@ export const tables = {
             }
         },
         [Constant.SET_RESERVE]: (state, payload) => {
-            console.log(payload);
             if (payload) {
                 state.reserve = payload
             }

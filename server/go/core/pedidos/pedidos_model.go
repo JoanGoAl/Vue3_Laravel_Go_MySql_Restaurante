@@ -5,7 +5,7 @@ type Pedido struct {
 	Idcliente uint    `json:"idcliente"`
 	Pedido    string  `json:"pedido"`
 	Precio    float32 `json:"precio"`
-	Status    bool    `json:"status"`
+	Status    float32 `json:"status"`
 }
 
 func (b *Pedido) TableName() string {

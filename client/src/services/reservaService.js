@@ -11,7 +11,7 @@ export default {
     getReservas() {
         return Api(RESERVE_API_ADMIN).get(`getReservas`)
     },
-    changeStatusReserva(id) {
-        return Api(RESERVE_API_ADMIN).put(`changeStatusReserva/${id}`)
+    changeStatusReserva(id, status) {
+        return Api(RESERVE_API_ADMIN).put(`changeStatusReserva/${id}`, status)
     }
 }

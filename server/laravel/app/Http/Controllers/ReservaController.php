@@ -16,7 +16,7 @@ class ReservaController extends Controller
     public function changeStatusReserva(Request $request, $id)
     {
         $reserva = Reserva::find($id);
-        $reserva->status = 1;
+        $reserva->status = $request->status;
         $reserva->save();
         return $reserva;
     }

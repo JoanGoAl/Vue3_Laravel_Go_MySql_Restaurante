@@ -46,7 +46,7 @@ const handleRegister = (e) => {
     </div>
 </template>
 
-<style>
+<style scoped>
 .contianer-route {
     margin-top: 15px;
     text-align: right;

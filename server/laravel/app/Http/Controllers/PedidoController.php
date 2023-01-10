@@ -16,9 +16,8 @@ class PedidoController extends Controller
     public function changeStatusPedido(Request $request, $id)
     {
         $pedido = Pedido::find($id);
-        $pedido->status = 1;
+        $pedido->status = $request->status;
         $pedido->save();
         return $pedido;
     }
 }
-
