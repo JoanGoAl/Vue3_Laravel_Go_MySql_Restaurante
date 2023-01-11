@@ -4,7 +4,12 @@ import { reactive, computed, ref } from "vue";
 import Constant from "../../Constant"
 import TargetCarrito from "./TargetCarrito.vue";
 import PedidoService from "@/services/PedidoService";
+import { createToaster } from "@meforma/vue-toaster";
 
+const toaster = createToaster({
+    position: "bottom-right",
+    duration: 3000,
+});
 const store = useStore();
 
 const state = reactive({
@@ -20,10 +25,18 @@ const getNumberOfProducts = () => {
 }
 
 const delteCart = () => {
+    if (state.cart.length == 0) {
+        console.log("No hay productos en el carrito");
+        return
+    };
     store.dispatch("pedidos/" + Constant.CLEAR_CART);
 }
 
 const sendCard = () => {
+    if (state.cart.length == 0) {
+        return
+    };
+
     let info = {
         idcliente: 1,
         pedido: JSON.stringify(state.cart),
@@ -34,8 +47,11 @@ const sendCard = () => {
     PedidoService.setPedido(info)
         .then(res => {
             console.log(res);
+            toaster.success("Pedido realizado con exito");
+            delteCart();
         }).catch(err => {
             console.log(err);
+            toaster.error("Error al realizar el pedido");
         })
 }
 
@@ -101,7 +117,12 @@ const sendCard = () => {
     height: 10%;
 }
 
+.container-products::-webkit-scrollbar {
+    display: none;
+}
+
 .container-products {
+    padding: 0 10px;
     height: 80%;
     overflow-y: scroll;
 }
