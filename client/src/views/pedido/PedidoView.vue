@@ -29,6 +29,7 @@ const filter = ref({
 const handleFilter = (products) => {
     return useFilter(products)
         .filter(filter.value)
+        .slice(filter.value.start, filter.value.end)
 }
 
 const handlePagination = (aux) => {

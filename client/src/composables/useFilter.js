@@ -14,10 +14,6 @@ export default function useFilter(data) {
             returnData = returnData.filter(item => item.nombre.toLowerCase().includes(filterData.search.toLowerCase()))
         }
 
-        if (filterData.end) {
-            returnData = returnData.slice(filterData.start, filterData.end)
-        }
-
         return returnData
         
     }
