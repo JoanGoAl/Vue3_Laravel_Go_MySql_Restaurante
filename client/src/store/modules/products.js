@@ -17,7 +17,6 @@ export const products = {
         },
         [Constant.GET_CATEGORIAS]: (state, payload) => {
             if (payload) {
-                console.log(payload);
                 state.categorias = payload;
             }
         }

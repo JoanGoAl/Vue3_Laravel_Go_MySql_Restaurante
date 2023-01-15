@@ -10,6 +10,7 @@ export default {
     GET_PRODUCTS_ADMIN: "getProductsAdmin",
     GET_PRODUCTS: "getProducts",
     GET_CATEGORIAS: "getCategorias",
+    PAGINATED_PRODUCTS: "paginatedProducts",
 
     // RESERVE
     SET_RESERVE: "setReserve",

@@ -5,6 +5,7 @@ import Constant from "../../Constant"
 import useFilter from "@/composables/useFilter"
 import Carrito from "../../components/pedido/CarritoView.vue"
 import PoductTarget from "../../components/pedido/ProductoTarget.vue"
+import pagination from "@/components/pedido/Pagination.vue"
 
 const store = useStore();
 store.dispatch("products/" + Constant.GET_PRODUCTS);
@@ -16,12 +17,24 @@ const categories = () => {
     return new Set(state.productList.map(item => { return item.categoria }))
 }
 
+const pagCant = 4
+
 const filter = ref({
-    categoria: ''
+    categoria: '',
+    search: '',
+    start: 0,
+    end: pagCant
 })
 
 const handleFilter = (products) => {
-    return useFilter(products).filter(filter.value)
+    return useFilter(products)
+        .filter(filter.value)
+}
+
+const handlePagination = (aux) => {
+    if (filter.value.start + aux < 0 || filter.value.end + aux > state.productList.length) return;
+    filter.value.start = filter.value.start + aux;
+    filter.value.end = filter.value.end + aux;
 }
 
 </script>
@@ -39,8 +52,21 @@ const handleFilter = (products) => {
                 </select>
             </div>
             <div v-if="handleFilter(state.productList)">
-                <div v-for="product in handleFilter(state.productList)">
-                    <PoductTarget :product="product" /> 
+                <div>
+                    <PoductTarget 
+                        v-for="product in handleFilter(state.productList)"
+                        :product="product" 
+                        :key="product.id" 
+                    /> 
+                </div>
+                <div class="pagination-container">
+                    <pagination 
+                        :longitud="state.productList.length" 
+                        :handlePagination="handlePagination"
+                        :cantPage="pagCant"
+                        :page="{start: filter.start, end: filter.end}"
+                    >
+                    </pagination>
                 </div>
             </div>
         </div>
