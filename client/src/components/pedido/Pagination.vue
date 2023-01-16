@@ -27,6 +27,8 @@ const props = defineProps({
 // const store = useStore();
 const totalPages = Math.ceil(props.longitud / props.cantPage);
 
+// console.log(props.longitud);
+
 // const page = ref({
 //     start: 0,
 //     end: props.cantPage

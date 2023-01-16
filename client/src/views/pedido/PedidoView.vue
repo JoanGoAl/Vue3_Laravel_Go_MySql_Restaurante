@@ -26,14 +26,26 @@ const filter = ref({
     end: pagCant
 })
 
+const actualLength = ref(0)
+
 const handleFilter = (products) => {
     return useFilter(products)
         .filter(filter.value)
+}
+
+const handleFilterPagination = (products) => {
+    return handleFilter(products)
         .slice(filter.value.start, filter.value.end)
 }
 
+const cantOfProducts = computed(() => {
+    let temp = handleFilter(state.productList).length
+    actualLength.value = temp
+    return temp
+})
+
 const handlePagination = (aux) => {
-    if (filter.value.start + aux < 0 || filter.value.end + aux > state.productList.length) return;
+    if (filter.value.start + aux < 0 || filter.value.end + aux > (actualLength.value + pagCant)) return;
     filter.value.start = filter.value.start + aux;
     filter.value.end = filter.value.end + aux;
 }
@@ -53,19 +65,20 @@ const handlePagination = (aux) => {
                 </select>
             </div>
             <div v-if="handleFilter(state.productList)">
-                <div>
+                <div class="target-contianer">
                     <PoductTarget 
-                        v-for="product in handleFilter(state.productList)"
+                        v-for="product in handleFilterPagination(state.productList)"
                         :product="product" 
                         :key="product.id" 
                     /> 
                 </div>
                 <div class="pagination-container">
                     <pagination 
-                        :longitud="state.productList.length" 
+                        :longitud="cantOfProducts" 
                         :handlePagination="handlePagination"
                         :cantPage="pagCant"
                         :page="{start: filter.start, end: filter.end}"
+                        :key="cantOfProducts"
                     >
                     </pagination>
                 </div>
@@ -78,6 +91,9 @@ const handlePagination = (aux) => {
 </template>
 
 <style scoped>
+.target-contianer {
+    height: 68.2vh;
+}
 .container-filtros {
     width: 100%;
     height: 50px;
