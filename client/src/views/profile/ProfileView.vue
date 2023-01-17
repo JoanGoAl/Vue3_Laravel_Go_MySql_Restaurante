@@ -20,18 +20,30 @@ ClientService.getProfile().then((res) => {
                 <img :src="user.avatar" alt="" width="250">
             </div>
             <div class="user-info">
+                <div>
+                    <h1>Información del usuario</h1>
+                </div>
                 <div class="user-info-name">
-                    <h1>{{ user.nombre }}</h1>
+                    <h3>{{ user.nombre }}</h3>
                 </div>
                 <div class="user-info-email">
-                    <h2>{{ user.email }}</h2>
+                    <h3>{{ user.email }}</h3>
                 </div>
                 <div class="user-info-username">
                     <h3>{{ user.username }}</h3>
                 </div>
+                <div class="user-info-dni">
+                    <h3>{{ user.dni }}</h3>
+                </div>
+                <div class="user-info-telefono">
+                    <h3>{{ user.telefono }}</h3>
+                </div>
+                <div class="user-info-direccion">
+                    <h3>{{ user.direccion }}</h3>
+                </div>
             </div>
-            <div class="container-reservas">asdasd</div>
-            <div class="container-pedidos">asdasd</div>
+            <div class="container-reservas">Reservas</div>
+            <div class="container-pedidos">Pedidos</div>
         </div>
         <!-- {{user}} -->
     </div>

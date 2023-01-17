@@ -46,6 +46,12 @@ export const auth = {
                 }).catch((err) => {
                     console.log(err)
                 });
+        },
+        [Constant.LOGOUT_USER]: (store) => {
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
+            store.commit(Constant.LOGIN_USER, null)
+            window.location.replace('/home')
         }
     },
     getters: {

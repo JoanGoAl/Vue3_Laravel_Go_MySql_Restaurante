@@ -2,6 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { useStore } from "vuex";
 import { ref } from "vue";
+import Constant from '../../Constant';
 
 const store = useStore();
 
@@ -16,12 +17,16 @@ if (localStorage.getItem("token")) {
     isLoged.value = false
 }
 
+const logout = () => {
+    store.dispatch("auth/" + Constant.LOGOUT_USER);
+}
+
 </script>
 
 <template>
     <div class="container-header">
         <div class="container-img"><img src="../../../public/ggFood_logo.png" alt=""></div>
-        <nav>
+        <nav v-if="$route.path.split('/')[1] !== 'profile'">
             <div nav_ancor>
                 <RouterLink to="/">
                     <span>HOME</span>
@@ -44,8 +49,12 @@ if (localStorage.getItem("token")) {
                     <img :src="img" alt="" width="50" />
                 </RouterLink>
             </div>
-
         </nav>
+        <div v-else>
+            <div nav_ancor class="logout">
+                <a @click="logout">LOGOUT</a>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -73,6 +82,7 @@ nav {
     color: rgb(76, 76, 76);
     text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
 }
 
 [nav_ancor]>a:hover {
