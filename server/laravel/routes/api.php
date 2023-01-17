@@ -34,13 +34,14 @@ Route::get('/getUsers', [UserController::class, 'getUsers']);
 Route::put('/updateUser', [UserController::class, 'updateUser']);
 Route::get('/checkAdmin/{email}', [UserController::class, 'checkAdmin']);
 
+
 // Products
-
-Route::get('/getProducts', [ProductController::class, 'getProducts']);
-Route::post('/addProduct', [ProductController::class, 'addProduct']);
-Route::delete('/deleteProduct/{id}', [ProductController::class, 'deleteProduct']);
-Route::put('/updateProduct/{id}', [ProductController::class, 'updateProduct']);
-
+Route::middleware('jwt.verify')->group(function () {
+    Route::get('/getProducts', [ProductController::class, 'getProducts']);
+    Route::post('/addProduct', [ProductController::class, 'addProduct']);
+    Route::delete('/deleteProduct/{id}', [ProductController::class, 'deleteProduct']);
+    Route::put('/updateProduct/{id}', [ProductController::class, 'updateProduct']);
+});
 // Reserves
 Route::get('/getReservas', [ReservaController::class, 'getReservas']);
 Route::put('/changeStatusReserva/{id}', [ReservaController::class, 'changeStatusReserva']);

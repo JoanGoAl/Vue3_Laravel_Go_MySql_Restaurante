@@ -45,15 +45,15 @@ func SetupRouter() *gin.Engine {
 	grp_table := r.Group("/table-api")
 	{
 		grp_table.POST("/getTables", tables.GetTables)
-		grp_table.POST("/createTable", tables.CreateTable)
-		grp_table.DELETE("/deleteTable/:id", tables.DeleteTable)
-		grp_table.PUT("/updateTable/:id", tables.UpdateTable)
+		// grp_table.POST("/createTable", tables.CreateTable)       // TODO : eliminar
+		// grp_table.DELETE("/deleteTable/:id", tables.DeleteTable) // TODO : eliminar
+		// grp_table.PUT("/updateTable/:id", tables.UpdateTable)    // TODO : eliminar
 	}
 
 	grp_client := r.Group("/client-api")
 	{
-		grp_client.GET("/allClients", clients.GetClients)
-		grp_client.GET("/client/:id", clients.GetClientById)
+		// grp_client.GET("/allClients", clients.GetClients) // TODO : eliminar
+		grp_client.Use(Middlewares.AuthMiddleware(true)).GET("/getClient", clients.GetClientById)
 	}
 
 	grp_reserva := r.Group("/reserva-api")
