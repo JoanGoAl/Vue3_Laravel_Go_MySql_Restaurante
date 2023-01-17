@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from "vue"
+import { useStore } from "vuex";
+import Constant from "@/Constant";
 
 const infoUser = ref({
     email: "",
@@ -9,11 +11,13 @@ const infoUser = ref({
 
 const infoAdicional = ref({
     username: "",
-    nombreCompleto: "",
+    nombre: "",
     direccion: "",
     telefono: "",
     dni: ""
 })
+const store = useStore();
+
 
 const errorEmail = ref(false)
 const errorPassword = ref(["", false])
@@ -67,10 +71,18 @@ const handleRegister2 = (e) => {
     })
 
     if (aux) {
+        adicionalError.value = true
+        return
+    } else {
+        adicionalError.value = false
 
+        let credentials = {
+            ...infoUser.value,
+            ...temp
+        }
+
+        store.dispatch("auth/" + Constant.REGISTER_USER, credentials);
     }
-
-    console.log(aux);
 
 }
 
@@ -103,8 +115,8 @@ const handleRegister2 = (e) => {
                         </div>
                         <br>
                         <div>
-                            <label for="password">Repetir Contraseña</label>
-                            <input type="password" v-model="infoUser.password2" name="password" id="password">
+                            <label for="password2">Repetir Contraseña</label>
+                            <input type="password" v-model="infoUser.password2" name="password2" id="password2">
                         </div>
                         <div v-if="errorPassword[1]">
                             <br>
@@ -134,9 +146,9 @@ const handleRegister2 = (e) => {
                             <input type="text" v-model="infoAdicional.username" name="username" id="username">
                         </div>
                         <div>
-                            <label for="nombreCompleto">Nombre completo</label>
-                            <input type="text" v-model="infoAdicional.nombreCompleto" name="nombreCompleto"
-                                id="nombreCompleto">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" v-model="infoAdicional.nombre" name="nombre"
+                                id="nombre">
                         </div>
                         <div>
                             <label for="direccion">Dirección</label>
@@ -152,7 +164,7 @@ const handleRegister2 = (e) => {
                         </div>
                         <div v-if="adicionalError">
                             <br>
-                            <span class="error">{{ errorPassword[0] }}</span>
+                            <span class="error">Rellena todos los campos</span>
                         </div>
                         <div class="container-button">
                             <button @click="handleRegister2">Terminar registro</button>

@@ -1,5 +1,12 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+
+const handleLogout = () => {
+    localStorage.removeItem("token")
+    window.location.reload()
+}
+
+
 </script>
 
 <template>
@@ -23,6 +30,7 @@ import { RouterLink } from 'vue-router'
             <div nav_ancor>
                 <RouterLink to="/login">LOGIN</RouterLink>
             </div>
+
         </nav>
     </div>
 </template>
