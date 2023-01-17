@@ -56,7 +56,7 @@ const handlePagination = (aux) => {
     <div class="main-pedidos">
         <div class="container-productos">
             <div class="container-filtros">
-                <input type="text" name="search" id="search" placeholder="Buscar producto..." v-model="filter.search" >
+                <input type="text" name="search" id="search" placeholder="Buscar producto..." v-model="filter.search">
                 <label for="categoria" style="margin-right: 5px;">Categoria</label>
                 <select name="" id="" v-model="filter.categoria">
                     <option value="">Seleccione una categoria</option>
@@ -66,20 +66,12 @@ const handlePagination = (aux) => {
             </div>
             <div v-if="handleFilter(state.productList)">
                 <div class="target-contianer">
-                    <PoductTarget 
-                        v-for="product in handleFilterPagination(state.productList)"
-                        :product="product" 
-                        :key="product.id" 
-                    /> 
+                    <PoductTarget v-for="product in handleFilterPagination(state.productList)" :product="product"
+                        :key="product.id" />
                 </div>
                 <div class="pagination-container">
-                    <pagination 
-                        :longitud="cantOfProducts" 
-                        :handlePagination="handlePagination"
-                        :cantPage="pagCant"
-                        :page="{start: filter.start, end: filter.end}"
-                        :key="cantOfProducts"
-                    >
+                    <pagination :longitud="cantOfProducts" :handlePagination="handlePagination" :cantPage="pagCant"
+                        :page="{ start: filter.start, end: filter.end }" :key="cantOfProducts">
                     </pagination>
                 </div>
             </div>
@@ -94,6 +86,7 @@ const handlePagination = (aux) => {
 .target-contianer {
     height: 68.2vh;
 }
+
 .container-filtros {
     width: 100%;
     height: 50px;
@@ -102,6 +95,7 @@ const handlePagination = (aux) => {
     align-items: center;
     justify-content: center;
 }
+
 .container-carrito {
     position: fixed;
     right: 0;

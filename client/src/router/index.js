@@ -13,11 +13,11 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/home' },
     { path: '/home', name: 'home', component: HomeView },
-    { path: '/reserve', name: 'reserve', component: ReserveView },
-    { path: '/pedido', name: 'pedido', component: PedidoView },
+    { path: '/reserve', name: 'reserve', component: ReserveView, beforeEnter: AuthGuards.isAuth, meta: { requiresAuth: true } },
+    { path: '/pedido', name: 'pedido', component: PedidoView, beforeEnter: AuthGuards.isAuth, meta: { requiresAuth: true } },
     { path: '/profile', name: 'profile', component: ReserveView },
-    { path: '/login', name: 'login', component: LoginView },
-    { path: '/register', name: 'register', component: RegisterView },
+    { path: '/login', name: 'login', component: LoginView, beforeEnter: AuthGuards.isNotAuth, meta: { requiresAuth: true } },
+    { path: '/register', name: 'register', component: RegisterView, beforeEnter: AuthGuards.isNotAuth, meta: { requiresAuth: true } },
     {
       path: '/admin',
       name: 'panelAdmin',

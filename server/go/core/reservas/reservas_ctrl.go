@@ -7,7 +7,7 @@ import (
 )
 
 func GetOneReservas(reserva *Reserva, id string) (err error) {
-	if err = Config.DB.Where("id = ?", id).First(reserva).Error; err != nil {
+	if err = Config.DB.Where("idClient = ?", id).First(reserva).Error; err != nil {
 		return err
 	}
 	return nil

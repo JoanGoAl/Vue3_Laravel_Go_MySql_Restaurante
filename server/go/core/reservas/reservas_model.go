@@ -1,9 +1,9 @@
 package reservas
 
 type Reserva struct {
-	Id       uint   `json:"id"`
+	Id       string `json:"id"`
 	Idtable  uint   `json:"idtable"`
-	Idclient uint   `json:"idclient"`
+	Idclient string `json:"idclient"`
 	Date     string `json:"date"`
 	Time     string `json:"time"`
 	Status   bool   `json:"status"`

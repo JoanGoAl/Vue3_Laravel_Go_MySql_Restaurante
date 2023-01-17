@@ -30,7 +30,7 @@ const handleUpdate = (id, status) => {
 
 </script>
 <template>
-
+    {{ state.reserveslist }}
     <div class="container-reservas-admin">
         <h1>Reservas</h1>
         <div>

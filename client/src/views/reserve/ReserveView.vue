@@ -20,7 +20,7 @@ const handelOpenModal = () => {
     if (!state.filterReserve.time) {
         toaster.error("Seleccione la hora de la reserva");
         return
-    } 
+    }
 
     if (!state.filterReserve.date) {
         toaster.error("Seleccione la fecha de la reserva");
@@ -47,7 +47,6 @@ const getTable = (id) => {
 const hundelSend = () => {
     let item = {
         idtable: tableSelected.value,
-        idclient: 1, // TODO: cambiar por el id del cliente
         date: state.filterReserve.date,
         time: state.filterReserve.time,
         status: false
@@ -76,8 +75,7 @@ const hundelSend = () => {
         <div class="container_restaurant">
             <div class="container_mesas" v-if="state.tableslist">
                 <div class="mesa" v-for="table in state.tableslist" :key="table.id">
-                    <Mesa :table="table" :id="table.id"
-                        :selectMesa="selectMesa" />
+                    <Mesa :table="table" :id="table.id" :selectMesa="selectMesa" />
                 </div>
             </div>
             <div v-else class="container-table-not-found">
@@ -103,12 +101,11 @@ const hundelSend = () => {
             </div>
         </div>
     </div>
-    <Modal v-model:visible="isVisible" 
-        title="Reservar"
-        :okButton="{ text: 'Reservar', onclick: hundelSend }"
-    >
+    <Modal v-model:visible="isVisible" title="Reservar" :okButton="{ text: 'Reservar', onclick: hundelSend }">
         <div>
-            <b>¿Quieres confirmar tu reserva para el dia {{ state.filterReserve.date }} a las {{ state.filterReserve.time }}?</b>
+            <b>¿Quieres confirmar tu reserva para el dia {{ state.filterReserve.date }} a las {{
+                state.filterReserve.time
+            }}?</b>
         </div>
     </Modal>
 </template>
@@ -121,10 +118,12 @@ const hundelSend = () => {
     padding: 10px;
     text-align: center;
 }
+
 .mesa {
     width: 300px;
     margin: 15px 10px;
 }
+
 .container-table-not-found {
     width: 100%;
     height: 70vh;
@@ -157,5 +156,4 @@ const hundelSend = () => {
     display: flex;
     flex-wrap: wrap;
 }
-
 </style>

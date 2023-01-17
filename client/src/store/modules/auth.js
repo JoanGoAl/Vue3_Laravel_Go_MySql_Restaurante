@@ -1,7 +1,6 @@
 import Constant from "../../Constant";
 import userService from "../../services/userService";
 import { createToaster } from "@meforma/vue-toaster";
-import router from "../../router";
 
 const toaster = createToaster();
 

@@ -9,6 +9,11 @@ import (
 func SetPedido(c *gin.Context) {
 	var pedido Pedido
 	c.BindJSON(&pedido)
+
+	idClient, _ := c.Get("client_id")
+
+	pedido.Idcliente = idClient.(string)
+
 	err := CreatePedido(&pedido)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)

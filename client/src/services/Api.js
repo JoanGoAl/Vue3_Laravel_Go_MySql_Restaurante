@@ -9,13 +9,11 @@ export default (URL) => {
     const store = useStore();
 
     const axiosInstance = axios.create({
-        /*     baseURL: `${secret.LARAVEL_APP_URL}` */
         baseURL: URL
     })
 
     const token = localStorage.getItem('token')
     if (token) {
-        // axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`
         axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`
     }
 
@@ -29,7 +27,7 @@ export default (URL) => {
                 store.dispatch("user/" + Constant.USER_REMOVE, {
                     succes: true,
                 });
-                router.push({ name: "signin" });
+                router.push({ name: "login" });
             }
             return Promise.reject(error)
         }
