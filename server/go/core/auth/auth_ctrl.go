@@ -21,6 +21,18 @@ func responseClient(client clients.Client) gin.H {
 	}
 }
 
+func responseProfile(client clients.Client) gin.H {
+	return gin.H{
+		"nombre":    client.Nombre,
+		"email":     client.Email,
+		"avatar":    client.Avatar,
+		"dni":       client.Dni,
+		"telefono":  client.Telefono,
+		"direccion": client.Direccion,
+		"username":  client.Username,
+	}
+}
+
 func Register(c *gin.Context) {
 	var client clients.Client
 	c.BindJSON(&client)
@@ -54,4 +66,15 @@ func Login(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, responseClient(client))
+}
+
+func User(c *gin.Context) {
+	id, _ := c.Get("client_id")
+	var client clients.Client
+	err := GetUserInfo(&client, id.(string))
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, responseProfile(client))
+	}
 }

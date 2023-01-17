@@ -6,6 +6,7 @@ import NotFoundView from '../views/notFound/notFoundView.vue'
 import PedidoView from '../views/pedido/PedidoView.vue'
 import LoginView from '../views/login/LoginView.vue'
 import RegisterView from '../views/login/RegisterView.vue'
+import ProfileView from '../views/profile/ProfileView.vue'
 import AuthGuards from '../services/guards/AuthGuards'
 
 const router = createRouter({
@@ -15,7 +16,7 @@ const router = createRouter({
     { path: '/home', name: 'home', component: HomeView },
     { path: '/reserve', name: 'reserve', component: ReserveView, beforeEnter: AuthGuards.isAuth, meta: { requiresAuth: true } },
     { path: '/pedido', name: 'pedido', component: PedidoView, beforeEnter: AuthGuards.isAuth, meta: { requiresAuth: true } },
-    { path: '/profile', name: 'profile', component: ReserveView },
+    { path: '/profile', name: 'profile', component: ProfileView, beforeEnter: AuthGuards.isAuth, meta: { requiresAuth: true } },
     { path: '/login', name: 'login', component: LoginView, beforeEnter: AuthGuards.isNotAuth, meta: { requiresAuth: true } },
     { path: '/register', name: 'register', component: RegisterView, beforeEnter: AuthGuards.isNotAuth, meta: { requiresAuth: true } },
     {

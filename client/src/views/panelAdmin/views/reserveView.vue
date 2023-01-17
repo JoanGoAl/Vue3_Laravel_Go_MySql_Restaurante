@@ -4,6 +4,7 @@ import { computed, reactive } from "vue";
 import Constant from "@/Constant";
 import ReservaService from "@/services/reservaService";
 import { createToaster } from "@meforma/vue-toaster";
+import Loading from "@/components/Loading.vue";
 
 const store = useStore();
 store.dispatch("reservas/" + Constant.GET_RESERVAS);
@@ -30,7 +31,7 @@ const handleUpdate = (id, status) => {
 
 </script>
 <template>
-    <div class="container-reservas-admin">
+    <div class="container-reservas-admin" v-if="state.reserveslist">
         <h1>Reservas</h1>
         <div>
             <table>
@@ -65,7 +66,7 @@ const handleUpdate = (id, status) => {
             </table>
         </div>
     </div>
-
+    <Loading v-else/>
 </template>
 
 <style scoped>

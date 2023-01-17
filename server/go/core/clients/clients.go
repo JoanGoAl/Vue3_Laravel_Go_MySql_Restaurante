@@ -23,6 +23,6 @@ func GetClientById(c *gin.Context) {
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusOK, client)
+		c.JSON(http.StatusOK, "client")
 	}
 }

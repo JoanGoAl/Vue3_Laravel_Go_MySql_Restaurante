@@ -4,7 +4,7 @@ import { computed, reactive } from "vue";
 import Constant from "@/Constant";
 import { ref } from "vue";
 import UserInfo from "@/components/panelAdmin/UserInfo.vue";
-
+import Loading from "@/components/Loading.vue";
 
 const store = useStore();
 const state = reactive({
@@ -21,19 +21,23 @@ const selectUser = (client) => {
 </script>
 
 <template>
-    <h1>Usuarios</h1>
-    <div class="container-users">
-        <div class="table_config">
-            <div class="user-target" v-for="client in state.clientlist" v-on:click="selectUser(client)"
-                :key="client.id">
-                <img :src="client.avatar" alt="">
-                <div>{{ client.nombre }}</div>
+    <div v-if="state.clientlist">
+        <h1>Usuarios</h1>
+        <div class="container-users">
+            <div class="table_config">
+                <div class="user-target" v-for="client in state.clientlist" v-on:click="selectUser(client)"
+                    :key="client.id">
+                    <img :src="client.avatar" alt="">
+                    <div>{{ client.nombre }}</div>
+                </div>
+            </div>
+            <div class="container-user-info">
+                <UserInfo v-if="userSelected" :user="userSelected" :key="userSelected.id" />
             </div>
         </div>
-        <div class="container-user-info">
-            <UserInfo v-if="userSelected" :user="userSelected" :key="userSelected.id" />
-        </div>
     </div>
+    <Loading v-else/>
+
 </template>
 
 <style scoped>

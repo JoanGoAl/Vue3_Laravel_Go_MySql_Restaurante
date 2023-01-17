@@ -76,6 +76,8 @@ func SetupRouter() *gin.Engine {
 	{
 		grp_auth.POST("/register", auth.Register)
 		grp_auth.POST("/login", auth.Login)
+		grp_auth.Use(Middlewares.AuthMiddleware(true)).GET("/user", auth.User)
+
 	}
 
 	return r

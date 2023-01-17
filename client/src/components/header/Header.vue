@@ -39,8 +39,10 @@ if (localStorage.getItem("token")) {
             <div nav_ancor v-if="!isLoged">
                 <RouterLink to="/login">LOGIN</RouterLink>
             </div>
-            <div nav_ancor v-if="isLoged">
-                <img :src="img" alt="" width="50">
+            <div nav_ancor v-else>
+                <RouterLink to="/profile">
+                    <img :src="img" alt="" width="50" />
+                </RouterLink>
             </div>
 
         </nav>

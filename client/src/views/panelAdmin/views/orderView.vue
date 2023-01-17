@@ -6,6 +6,7 @@ import PedidoService from "@/services/pedidoService";
 import { createToaster } from "@meforma/vue-toaster";
 import { ref } from 'vue';
 import { Modal } from 'usemodal-vue3';
+import Loading from "@/components/Loading.vue";
 
 const store = useStore();
 store.dispatch("pedidos/" + Constant.GET_PEDIDOS_ADMIN);
@@ -57,7 +58,7 @@ const handelOpenModal = (pedido) => {
             </div>
         </div>
     </Modal>
-    <div>
+    <div v-if="state.pedidosList">
         <h1>Pedidos</h1>
         <div>
             <table>
@@ -91,6 +92,9 @@ const handelOpenModal = (pedido) => {
         </div>
 
     </div>
+    <Loading v-else/>
+
+
 </template>
 
 <style scoped>

@@ -19,8 +19,8 @@ func LoginClient(client *clients.Client) (err error) {
 	return nil
 }
 
-func GetUserInfo(client *clients.Client, id_client string) (err error) {
-	if err := Config.DB.Where("id_cliente = ?", id_client).Find(client).Error; err != nil {
+func GetUserInfo(client *clients.Client, id string) (err error) {
+	if err := Config.DB.Where("id = ?", id).Find(client).Error; err != nil {
 		return err
 	}
 	return nil

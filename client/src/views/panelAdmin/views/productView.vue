@@ -7,6 +7,7 @@ import ProductService from "@/services/productService";
 import { ref } from 'vue';
 import { Modal } from 'usemodal-vue3';
 import { createToaster } from "@meforma/vue-toaster";
+import Loading from "@/components/Loading.vue";
 
 const toaster = createToaster({
     position: "bottom-right",
@@ -18,7 +19,7 @@ const isVisible = ref(false);
 const store = useStore();
 store.dispatch("products/" + Constant.GET_PRODUCTS_ADMIN);
 const state = reactive({
-  productslist: computed(() => store.getters['products/' + Constant.GET_PRODUCTS_ADMIN]),
+    productslist: computed(() => store.getters['products/' + Constant.GET_PRODUCTS_ADMIN]),
 });
 
 const handelOpenModal = () => {
@@ -44,7 +45,7 @@ const search = ref('');
 const categoryFilter = ref('');
 
 const handleCategoryFilter = (e) => {
-    categoryFilter.value = e.target.value;    
+    categoryFilter.value = e.target.value;
 }
 
 const createProduct = async () => {
@@ -80,11 +81,8 @@ const handleSearch = (e) => {
 </script>
  
 <template>
-    <Modal v-model:visible="isVisible" 
-        :okButton="{ text: 'Create', onclick: createProduct }"
-        :title="`Create Product`"
-    >
-        <form class="form-create-product" >
+    <Modal v-model:visible="isVisible" :okButton="{ text: 'Create', onclick: createProduct }" :title="`Create Product`">
+        <form class="form-create-product">
             <div>
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" v-model="formInfo.nombre" />
@@ -101,7 +99,8 @@ const handleSearch = (e) => {
                 <label for="categoria">Categoria</label>
                 <select name="" id="" v-model="formInfo.categoria">
                     <option value="">Seleccione una categoria</option>
-                    <option  v-for="category in new Set(state.productslist.map(item =>{return item.categoria}))" :value="category">{{ category }}</option>
+                    <option v-for="category in new Set(state.productslist.map(item => { return item.categoria }))"
+                        :value="category">{{ category }}</option>
                 </select>
                 <!-- <input type="text" id="categoria" v-modal="formInfo.categoria" name="categoria" /> -->
             </div>
@@ -111,14 +110,16 @@ const handleSearch = (e) => {
             </div>
         </form>
     </Modal>
-    <div>
+    <div v-if="state.productslist">
         <div class="header-products">
             <h1>Productos</h1>
             <div>
                 <input type="text" placeholder="Buscar" v-model="search" @keypress="handleSearch" />
-                <select name="" id="" @change="handleCategoryFilter" >
+                <select name="" id="" @change="handleCategoryFilter">
                     <option value="">Seleccione una categoria</option>
-                    <option v-if="state.productslist" v-for="category in new Set(state.productslist.map(item =>{return item.categoria}))" :value="category">{{ category }}</option>
+                    <option v-if="state.productslist"
+                        v-for="category in new Set(state.productslist.map(item => { return item.categoria }))"
+                        :value="category">{{ category }}</option>
                 </select>
             </div>
             <div>
@@ -129,12 +130,13 @@ const handleSearch = (e) => {
             <div class="container-target" v-for="(product, index) in state.productslist.filter(item => {
                 if (item.nombre.toLowerCase().includes(search.toLowerCase()) && (item.categoria === categoryFilter || categoryFilter === '')) {
                     return item
-                }           
+                }
             })">
                 <TargetProduct :product="product" />
             </div>
         </div>
     </div>
+    <Loading v-else/>
 </template>
 
 <style scoped>
@@ -143,6 +145,7 @@ const handleSearch = (e) => {
     justify-content: space-between;
     align-items: center;
 }
+
 .form-create-product>div {
     margin: 10px 0;
 }
@@ -151,10 +154,12 @@ const handleSearch = (e) => {
     display: block;
     margin-bottom: 5px;
 }
+
 .main-target {
     display: flex;
     flex-wrap: wrap;
 }
+
 .container-target {
     margin: 10px 15px;
     padding: 10px;

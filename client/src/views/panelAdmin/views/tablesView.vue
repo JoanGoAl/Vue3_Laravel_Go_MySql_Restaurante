@@ -4,6 +4,7 @@ import { useStore } from "vuex";
 import { computed, reactive } from "vue";
 import Constant from "@/Constant";
 import Target from "@/components/panelAdmin/TargetTable.vue"
+import Loading from "@/components/Loading.vue";
 
 const store = useStore();
 store.dispatch("tables/" + Constant.GET_TABLE_ADMIN);
@@ -15,7 +16,7 @@ const state = reactive({
 </script>
 
 <template >
-  <div class="container-all">
+  <div class="container-all" v-if="state.tableslist">
     <div class="title">
       <h1>Mesas</h1>
     </div>
@@ -32,6 +33,7 @@ const state = reactive({
       </div> -->
     </div>
   </div>
+  <Loading v-else/>
 
 </template>
 
