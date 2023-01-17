@@ -1,7 +1,7 @@
 package clients
 
 type Client struct {
-	Id        uint   `json:"id"`
+	Id        string `json:"id"`
 	Dni       string `json:"dni"`
 	Nombre    string `json:"nombre"`
 	Telefono  string `json:"telefono"`

@@ -9,6 +9,7 @@ import { OhVueIcon, addIcons } from "oh-vue-icons";
 import * as VIcons from "oh-vue-icons/icons";
 
 
+
 const Vi = Object.values({ ...VIcons })
 addIcons(...Vi);
 
@@ -17,6 +18,5 @@ app.use(router)
 app.use(store)
 
 app.component('v-icon', OhVueIcon)
-
 
 app.mount('#app')

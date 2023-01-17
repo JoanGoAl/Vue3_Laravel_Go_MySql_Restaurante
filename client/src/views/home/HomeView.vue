@@ -49,6 +49,7 @@ const state = reactive({
       </template>
     </Carousel>
   </div>
+
 </template>
 
 

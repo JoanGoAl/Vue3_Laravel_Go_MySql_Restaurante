@@ -22,25 +22,7 @@ const props = defineProps({
     }
 })
 
-// console.log(props.longitud);
-
-// const store = useStore();
 const totalPages = Math.ceil(props.longitud / props.cantPage);
-
-// console.log(props.longitud);
-
-// const page = ref({
-//     start: 0,
-//     end: props.cantPage
-// });
-
-// const handlePagination = (aux) => {
-
-//     if(page.value.start + aux < 0 || page.value.end + aux > props.longitud) return;
-//     page.value.start = page.value.start + aux;
-//     page.value.end = page.value.end + aux;
-
-// }
 
 const selectPage = (comp) => {
 

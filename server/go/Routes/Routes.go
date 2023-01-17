@@ -4,6 +4,7 @@ import (
 	// "restaurante_go/Controllers"
 
 	"net/http"
+	"restaurante_go/core/auth"
 	"restaurante_go/core/clients"
 	"restaurante_go/core/pedidos"
 	"restaurante_go/core/products"
@@ -67,6 +68,12 @@ func SetupRouter() *gin.Engine {
 	grp_pedidos := r.Group("/pedidos-api")
 	{
 		grp_pedidos.POST("/setPedido", pedidos.SetPedido)
+	}
+
+	grp_auth := r.Group("/auth")
+	{
+		grp_auth.POST("/register", auth.Register)
+		// grp_auth.POST("/login", auth.Login)
 	}
 
 	return r

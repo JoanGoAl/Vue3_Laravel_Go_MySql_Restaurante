@@ -38,3 +38,5 @@ func DbURL(dbConfig *DBConfig) string {
 		dbConfig.DBName,
 	)
 }
+
+const NBSecretPassword = "Pr0gr4m4c10nJ04n"
