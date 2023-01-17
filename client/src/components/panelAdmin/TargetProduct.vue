@@ -50,7 +50,6 @@ const handleDelete = () => {
             console.log(err);
         })
 
-    console.log("Delete");
 }
 
 </script>
@@ -58,7 +57,7 @@ const handleDelete = () => {
 <template>
     <div>
         <div class="title">
-            <h1 v-if="!editable">{{product.nombre}}</h1>
+            <h1 v-if="!editable">{{ product.nombre }}</h1>
             <input v-else type="text" class="edit-title" v-model="product.nombre">
         </div>
         <div class="container-info">
@@ -66,10 +65,11 @@ const handleDelete = () => {
                 <img :src="product.img" alt="" width="100%">
             </div>
             <div class="info">
-                <p v-if="!editable"> <b>Descripción:</b> {{product.descripcion}}</p>
-                <p v-else> <b>Descripción:</b> <textarea name="" id="" cols="30" rows="3" v-model="product.descripcion"></textarea> </p>
+                <p v-if="!editable"> <b>Descripción:</b> {{ product.descripcion }}</p>
+                <p v-else> <b>Descripción:</b> <textarea name="" id="" cols="30" rows="3"
+                        v-model="product.descripcion"></textarea> </p>
                 <br>
-                <p v-if="!editable"> <b>Precio:</b> {{product.precio}} €</p>
+                <p v-if="!editable"> <b>Precio:</b> {{ product.precio }} €</p>
                 <p v-else> <b>Precio:</b> <input class="edit-number" type="number" v-model="product.precio"> €</p>
             </div>
         </div>
@@ -85,10 +85,12 @@ const handleDelete = () => {
     width: 100%;
     font-size: 25px;
 }
+
 .edit-number {
     width: 50px;
     font-size: 15px;
 }
+
 .container-buttons {
     margin: 10px;
     text-align: right;
@@ -100,7 +102,7 @@ button {
     padding: 5px;
     border: none;
     border-radius: 5px;
-    color: white;    
+    color: white;
     cursor: pointer;
 }
 
@@ -115,22 +117,27 @@ button:nth-child(2) {
 button:hover {
     filter: brightness(0.9);
 }
+
 .info>* {
     font-size: 20px;
 }
+
 .info {
     width: 50%;
     height: 100%;
 }
+
 .container-info {
     display: flex;
     flex-direction: row;
 }
+
 .title {
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
 }
+
 .imagen {
     display: flex;
     align-items: center;
@@ -138,8 +145,8 @@ button:hover {
     width: 50%;
     /* height: 225px; */
 }
+
 .imagen>img {
     width: 225px;
 }
-
 </style>

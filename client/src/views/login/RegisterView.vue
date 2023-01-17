@@ -38,7 +38,6 @@ const handleRegister = (e) => {
         return
     }
     if (infoUser.value.password === "") {
-        console.log("Introduzca una contraseña");
         errorPassword.value = ["Introduzca una contraseña", true]
         return
     }
@@ -146,8 +145,7 @@ const handleRegister2 = (e) => {
                         </div>
                         <div>
                             <label for="nombre">Nombre completo</label>
-                            <input type="text" v-model="infoAdicional.nombre" name="nombre"
-                                id="nombre">
+                            <input type="text" v-model="infoAdicional.nombre" name="nombre" id="nombre">
                         </div>
                         <div>
                             <label for="direccion">Dirección</label>

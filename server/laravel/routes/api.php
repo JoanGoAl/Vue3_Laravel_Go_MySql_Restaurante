@@ -22,18 +22,18 @@ use App\Http\Controllers\PedidoController;
 //     return $request->user();
 // });
 
-
-Route::get('/getTables', [TableController::class, 'getTables']);
-Route::post('/addTable', [TableController::class, 'addTable']);
-Route::delete('/deleteTable/{id}', [TableController::class, 'deleteTable']);
-Route::put('/updateTable/{id}', [TableController::class, 'updateTable']);
-
+Route::middleware('jwt.verify')->group(function () {
+    Route::get('/getTables', [TableController::class, 'getTables']);
+    Route::post('/addTable', [TableController::class, 'addTable']);
+    Route::delete('/deleteTable/{id}', [TableController::class, 'deleteTable']);
+    Route::put('/updateTable/{id}', [TableController::class, 'updateTable']);
+});
 // Users
-
-Route::get('/getUsers', [UserController::class, 'getUsers']);
-Route::put('/updateUser', [UserController::class, 'updateUser']);
+Route::middleware('jwt.verify')->group(function () {
+    Route::get('/getUsers', [UserController::class, 'getUsers']);
+    Route::put('/updateUser', [UserController::class, 'updateUser']);
+});
 Route::get('/checkAdmin/{email}', [UserController::class, 'checkAdmin']);
-
 
 // Products
 Route::middleware('jwt.verify')->group(function () {
@@ -43,9 +43,12 @@ Route::middleware('jwt.verify')->group(function () {
     Route::put('/updateProduct/{id}', [ProductController::class, 'updateProduct']);
 });
 // Reserves
-Route::get('/getReservas', [ReservaController::class, 'getReservas']);
-Route::put('/changeStatusReserva/{id}', [ReservaController::class, 'changeStatusReserva']);
-
+Route::middleware('jwt.verify')->group(function () {
+    Route::get('/getReservas', [ReservaController::class, 'getReservas']);
+    Route::put('/changeStatusReserva/{id}', [ReservaController::class, 'changeStatusReserva']);
+});
 // Orders
-Route::get('/getPedidos', [PedidoController::class, 'getPedidos']);
-Route::put('/changeStatusPedido/{id}', [PedidoController::class, 'changeStatusPedido']);
+Route::middleware('jwt.verify')->group(function () {
+    Route::get('/getPedidos', [PedidoController::class, 'getPedidos']);
+    Route::put('/changeStatusPedido/{id}', [PedidoController::class, 'changeStatusPedido']);
+});

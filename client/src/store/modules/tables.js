@@ -47,7 +47,6 @@ export const tables = {
             return state.reserve
         },
         getTablesAdmin(state) {
-            console.log(state.tablesAdmin);
             return state.tablesAdmin
         }
     }

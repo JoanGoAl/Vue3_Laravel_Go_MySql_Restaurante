@@ -26,7 +26,7 @@ const getNumberOfProducts = () => {
 
 const delteCart = () => {
     if (state.cart.length == 0) {
-        console.log("No hay productos en el carrito");
+        toaster.warning("El carrito esta vacio");
         return
     };
     store.dispatch("pedidos/" + Constant.CLEAR_CART);
@@ -34,6 +34,7 @@ const delteCart = () => {
 
 const sendCard = () => {
     if (state.cart.length == 0) {
+        toaster.warning("El carrito esta vacio");
         return
     };
 
@@ -45,7 +46,6 @@ const sendCard = () => {
 
     PedidoService.setPedido(info)
         .then(res => {
-            console.log(res);
             toaster.success("Pedido realizado con exito");
             delteCart();
         }).catch(err => {

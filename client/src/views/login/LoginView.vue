@@ -27,7 +27,6 @@ const handleLogin = (e) => {
         email: infoUser.value.email,
         password: infoUser.value.password
     }
-    console.log(credentials);
     store.dispatch("auth/" + Contstants.LOGIN_USER, credentials);
 
 }
