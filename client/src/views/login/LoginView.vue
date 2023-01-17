@@ -1,7 +1,34 @@
 <script setup>
+import Contstants from "@/Constant";
+import { useStore } from "vuex";
+import { ref } from "vue";
+
+const store = useStore();
+// store.dispatch("auth/" + Constant.REGISTER_USER, credentials);
+const infoUser = ref({
+    email: "",
+    Password: ""
+})
+
+const error = ref(false)
 
 const handleLogin = (e) => {
     e.preventDefault();
+
+    const regexEmail = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
+
+    if (regexEmail.test(infoUser.value.email) && infoUser.value.password !== "") {
+        error.value = false
+    } else {
+        error.value = true
+        return
+    }
+    const credentials = {
+        email: infoUser.value.email,
+        password: infoUser.value.password
+    }
+    console.log(credentials);
+    store.dispatch("auth/" + Contstants.LOGIN_USER, credentials);
 
 }
 </script>
@@ -16,13 +43,17 @@ const handleLogin = (e) => {
                 <form action="">
                     <div formContianer>
                         <div>
-                            <label for="username">Username</label>
-                            <input type="text" name="username" id="username">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" v-model="infoUser.email">
                         </div>
                         <br>
                         <div>
                             <label for="password">Contraseña</label>
-                            <input type="password" name="password" id="password">
+                            <input type="password" name="password" id="password" v-model="infoUser.password">
+                        </div>
+                        <div v-if="error">
+                            <br>
+                            <span class="error">Email o contraseña incorrectos</span>
                         </div>
                         <div class="container-button">
                             <button @click="handleLogin">Login</button>
@@ -40,6 +71,10 @@ const handleLogin = (e) => {
 </template>
 
 <style scoped>
+.error {
+    color: red;
+}
+
 .contianer-route {
     margin-top: 15px;
     text-align: right;

@@ -6,6 +6,7 @@ import NotFoundView from '../views/notFound/notFoundView.vue'
 import PedidoView from '../views/pedido/PedidoView.vue'
 import LoginView from '../views/login/LoginView.vue'
 import RegisterView from '../views/login/RegisterView.vue'
+import AuthGuards from '../services/guards/AuthGuards'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,7 +29,8 @@ const router = createRouter({
         { path: 'reserve', name: 'reserveAdmin', component: () => import('../views/panelAdmin/views/reserveView.vue') },
         { path: 'order', name: 'order', component: () => import('../views/panelAdmin/views/orderView.vue') },
         { path: 'product', name: 'product', component: () => import('../views/panelAdmin/views/productView.vue') },
-      ]
+      ],
+      beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true }
     },
     { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFoundView }
   ]

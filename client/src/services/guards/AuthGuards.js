@@ -1,5 +1,5 @@
 import store from "@/store";
-import UserService from "@/services/UserService";
+import UserService from "@/services/userService";
 
 export default {
 
@@ -12,12 +12,19 @@ export default {
     },
     authGuardAdmin(to, from, next) {
 
-        UserService.checkAdmin()
+        let user = JSON.parse(localStorage.getItem("user"));
+
+        UserService.checkAdmin(user.email)
             .then(function (user) {
-                user = user.data.user;
-                localStorage.token = user.token;
-                localStorage.setItem("user", JSON.stringify(user));
-                next();
+                console.log(user);
+                if (user.data) {
+                    store.state.auth.isAdmin = true;
+                    next();
+                }
+                // user = user.data.user;
+                // localStorage.token = user.token;
+                // localStorage.setItem("user", JSON.stringify(user));
+                // next();
             })
             .catch(function (error) {
                 store.state.authUser.isAdmin = false;

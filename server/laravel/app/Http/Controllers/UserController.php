@@ -31,4 +31,11 @@ class UserController extends Controller
         $client->save();
         return $client;
     }
+
+    public function checkAdmin(Request $request, $email)
+    {
+        $client = Client::where('email', $email)->first();
+
+        return $client->admin;
+    }
 }

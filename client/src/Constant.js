@@ -6,6 +6,7 @@ export default {
     // CLIENTS
     GET_CLIENTS: "getClients",
     REGISTER_USER: "registerUser",
+    LOGIN_USER: "loginUser",
 
     // PRODUCTS
     GET_PRODUCTS_ADMIN: "getProductsAdmin",

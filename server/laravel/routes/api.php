@@ -32,6 +32,7 @@ Route::put('/updateTable/{id}', [TableController::class, 'updateTable']);
 
 Route::get('/getUsers', [UserController::class, 'getUsers']);
 Route::put('/updateUser', [UserController::class, 'updateUser']);
+Route::get('/checkAdmin/{email}', [UserController::class, 'checkAdmin']);
 
 // Products
 

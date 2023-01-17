@@ -36,3 +36,22 @@ func Register(c *gin.Context) {
 
 	c.JSON(http.StatusOK, responseClient(client))
 }
+
+func Login(c *gin.Context) {
+	var client clients.Client
+	c.BindJSON(&client)
+
+	password := client.Password
+
+	if err := LoginClient(&client); err != nil {
+		c.JSON(http.StatusOK, gin.H{"error": "Usuario o contraseña incorrectos"})
+		return
+	}
+
+	if err := bcrypt.CompareHashAndPassword([]byte(client.Password), []byte(password)); err != nil {
+		c.JSON(http.StatusOK, gin.H{"error": "Usuario o contraseña incorrectos"})
+		return
+	}
+
+	c.JSON(http.StatusOK, responseClient(client))
+}

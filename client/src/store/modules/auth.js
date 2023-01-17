@@ -1,6 +1,9 @@
 import Constant from "../../Constant";
-
 import userService from "../../services/userService";
+import { createToaster } from "@meforma/vue-toaster";
+import router from "../../router";
+
+const toaster = createToaster();
 
 export const auth = {
     namespaced: true,
@@ -13,6 +16,11 @@ export const auth = {
                 state.user = payload;
             }
         },
+        [Constant.LOGIN_USER]: (state, payload) => {
+            if (payload) {
+                state.user = payload;
+            }
+        }
     },
     actions: {
         [Constant.REGISTER_USER]: (store, payload) => {
@@ -24,6 +32,22 @@ export const auth = {
                     console.log(err)
                 });
         },
+        [Constant.LOGIN_USER]: (store, payload) => {
+            userService.login(payload)
+                .then((res) => {
+                    if (res.data.error) {
+                        toaster.error(res.data.error)
+                    } else {
+                        toaster.success("Bienvenido " + res.data.nombre)
+                        localStorage.setItem('token', res.data.token)
+                        localStorage.setItem('user', JSON.stringify(res.data))
+                        store.commit(Constant.LOGIN_USER, res.data)
+                        window.location.replace('/')
+                    }
+                }).catch((err) => {
+                    console.log(err)
+                });
+        }
     },
     getters: {
         getUser(state) {

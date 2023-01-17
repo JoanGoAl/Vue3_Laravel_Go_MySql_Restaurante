@@ -63,7 +63,6 @@ const handleRegister2 = (e) => {
     }
 
     let aux = false
-
     Object.keys(temp).some(item => {
         if (temp[item] === "") {
             aux = true

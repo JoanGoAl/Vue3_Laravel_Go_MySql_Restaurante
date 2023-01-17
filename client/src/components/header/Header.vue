@@ -1,11 +1,20 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import { useStore } from "vuex";
+import { ref } from "vue";
 
-const handleLogout = () => {
-    localStorage.removeItem("token")
-    window.location.reload()
+const store = useStore();
+
+const img = ref("")
+const isLoged = ref(false)
+
+if (localStorage.getItem("token")) {
+    let user = JSON.parse(localStorage.getItem("user"))
+    img.value = user.avatar
+    isLoged.value = true
+} else {
+    isLoged.value = false
 }
-
 
 </script>
 
@@ -27,8 +36,11 @@ const handleLogout = () => {
             <div nav_ancor>
                 <RouterLink to="/pedido">PEDIDOS</RouterLink>
             </div>
-            <div nav_ancor>
+            <div nav_ancor v-if="!isLoged">
                 <RouterLink to="/login">LOGIN</RouterLink>
+            </div>
+            <div nav_ancor v-if="isLoged">
+                <img :src="img" alt="" width="50">
             </div>
 
         </nav>

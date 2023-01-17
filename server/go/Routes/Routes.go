@@ -73,7 +73,7 @@ func SetupRouter() *gin.Engine {
 	grp_auth := r.Group("/auth")
 	{
 		grp_auth.POST("/register", auth.Register)
-		// grp_auth.POST("/login", auth.Login)
+		grp_auth.POST("/login", auth.Login)
 	}
 
 	return r
