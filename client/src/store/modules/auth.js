@@ -25,8 +25,11 @@ export const auth = {
         [Constant.REGISTER_USER]: (store, payload) => {
             userService.register(payload)
                 .then((res) => {
+                    toaster.success("Bienvenido " + res.data.nombre)
                     localStorage.setItem('token', res.data.token)
+                    localStorage.setItem('user', JSON.stringify(res.data))
                     store.commit(Constant.REGISTER_USER, res.data)
+                    window.location.replace('/')
                 }).catch((err) => {
                     console.log(err)
                 });

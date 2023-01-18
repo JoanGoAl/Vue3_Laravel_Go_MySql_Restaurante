@@ -41,7 +41,7 @@ const sendCard = () => {
     let info = {
         pedido: JSON.stringify(state.cart),
         precio: state.cart.reduce((acc, item) => acc + (item.precio * item.cantidad), 0),
-        status: 0
+        status: 0,
     }
 
     PedidoService.setPedido(info)
