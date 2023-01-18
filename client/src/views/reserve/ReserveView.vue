@@ -49,7 +49,7 @@ const hundelSend = () => {
         idtable: tableSelected.value,
         date: state.filterReserve.date,
         time: state.filterReserve.time,
-        status: false
+        status: 0
     }
     ReserveService.setReserve(item).then(res => {
         if (res.status === 200) {

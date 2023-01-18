@@ -23,3 +23,15 @@ func SetPedido(c *gin.Context) {
 		return
 	}
 }
+
+func GetPedidos(c *gin.Context) {
+	var pedidos []Pedido
+	id, _ := c.Get("client_id")
+
+	err := GetAllPedidos(&pedidos, id.(string))
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, pedidos)
+	}
+}

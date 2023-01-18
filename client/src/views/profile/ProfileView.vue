@@ -2,6 +2,8 @@
 import ClientService from "@/services/clientService";
 import { ref } from "vue";
 import Loading from "@/components/Loading.vue";
+import UserReservas from "../../components/reservar/UserReservas.vue";
+import UserPedidos from "../../components/pedido/UserPedidos.vue";
 
 const user = ref(null)
 
@@ -42,8 +44,12 @@ ClientService.getProfile().then((res) => {
                     <h3>{{ user.direccion }}</h3>
                 </div>
             </div>
-            <div class="container-reservas">Reservas</div>
-            <div class="container-pedidos">Pedidos</div>
+            <div class="container-reservas">
+                <UserReservas />
+            </div>
+            <div class="container-pedidos">
+                <UserPedidos />
+            </div>
         </div>
         <!-- {{user}} -->
     </div>

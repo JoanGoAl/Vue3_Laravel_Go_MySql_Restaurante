@@ -34,3 +34,15 @@ func CreateReserva(c *gin.Context) {
 		c.JSON(http.StatusOK, reserva)
 	}
 }
+
+func GetReservas(c *gin.Context) {
+	var reservas []Reserva
+	id, _ := c.Get("client_id")
+
+	err := GetAllReservas(&reservas, id.(string))
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, reservas)
+	}
+}

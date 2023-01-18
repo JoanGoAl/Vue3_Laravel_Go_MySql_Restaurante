@@ -60,6 +60,7 @@ func SetupRouter() *gin.Engine {
 	{
 		grp_reserva.Use(Middlewares.AuthMiddleware(true)).GET("/reserva", reservas.GetReserva)
 		grp_reserva.Use(Middlewares.AuthMiddleware(true)).POST("/createReserva", reservas.CreateReserva)
+		grp_reserva.Use(Middlewares.AuthMiddleware(true)).GET("/getReservas", reservas.GetReservas)
 	}
 
 	grp_product := r.Group("/product-api")
@@ -70,6 +71,7 @@ func SetupRouter() *gin.Engine {
 	grp_pedidos := r.Group("/pedidos-api")
 	{
 		grp_pedidos.Use(Middlewares.AuthMiddleware(true)).POST("/setPedido", pedidos.SetPedido)
+		grp_pedidos.Use(Middlewares.AuthMiddleware(true)).GET("/getPedidos", pedidos.GetPedidos)
 	}
 
 	grp_auth := r.Group("/auth")

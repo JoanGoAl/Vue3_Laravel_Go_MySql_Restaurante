@@ -25,7 +25,7 @@ const logout = () => {
 
 <template>
     <div class="container-header">
-        <div class="container-img"><img src="../../../public/ggFood_logo.png" alt=""></div>
+        <RouterLink to="/" class="container-img"><img src="../../../public/ggFood_logo.png" alt="" /></RouterLink>
         <nav v-if="$route.path.split('/')[1] !== 'profile'">
             <div nav_ancor>
                 <RouterLink to="/">
@@ -50,7 +50,21 @@ const logout = () => {
                 </RouterLink>
             </div>
         </nav>
-        <div v-else>
+        <div v-else class="nav-profile">
+            <div nav_ancor>
+                <RouterLink to="/">
+                    <span>HOME</span>
+                    <span>
+                        <i class="fas fa-address-card" aria-hidden="true"></i>
+                    </span>
+                </RouterLink>
+            </div>
+            <div nav_ancor>
+                <RouterLink to="/reserve">RESERVAR</RouterLink>
+            </div>
+            <div nav_ancor>
+                <RouterLink to="/pedido">PEDIDOS</RouterLink>
+            </div>
             <div nav_ancor class="logout">
                 <a @click="logout">LOGOUT</a>
             </div>
@@ -64,6 +78,13 @@ const logout = () => {
 }
 
 nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+}
+
+.nav-profile {
     display: flex;
     justify-content: space-between;
     align-items: center;

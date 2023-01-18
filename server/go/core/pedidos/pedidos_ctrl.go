@@ -13,3 +13,10 @@ func CreatePedido(pedido *Pedido) (err error) {
 	}
 	return nil
 }
+
+func GetAllPedidos(pedido *[]Pedido, id string) (err error) {
+	if err = Config.DB.Where("idcliente = ?", id).Find(pedido).Error; err != nil {
+		return err
+	}
+	return nil
+}

@@ -13,5 +13,8 @@ export default {
     },
     changeStatusPedido(id, status) {
         return Api(PEDIDO_API_ADMIN).put(`changeStatusPedido/${id}`, status)
+    },
+    getUserPedidos() {
+        return Api(PEDIDO_API).get('getPedidos')
     }
 }

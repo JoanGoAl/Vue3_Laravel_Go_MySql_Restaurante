@@ -6,7 +6,7 @@ type Reserva struct {
 	Idclient string `json:"idclient"`
 	Date     string `json:"date"`
 	Time     string `json:"time"`
-	Status   bool   `json:"status"`
+	Status   int    `json:"status"`
 }
 
 func (b *Reserva) TableName() string {

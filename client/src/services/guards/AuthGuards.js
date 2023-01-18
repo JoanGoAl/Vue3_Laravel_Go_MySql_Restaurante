@@ -1,5 +1,8 @@
 import store from "@/store";
 import UserService from "@/services/userService";
+import { createToaster } from "@meforma/vue-toaster";
+
+const toaster = createToaster();
 
 export default {
 
@@ -31,6 +34,7 @@ export default {
         if (localStorage.getItem("token")) {
             next();
         } else {
+            toaster.info("Debes iniciar sesión para acceder a esta página");
             next("/login");
         }
     },

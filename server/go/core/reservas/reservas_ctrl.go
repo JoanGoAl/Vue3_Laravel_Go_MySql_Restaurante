@@ -19,3 +19,10 @@ func CreateOneReserva(reserva *Reserva) (err error) {
 	}
 	return nil
 }
+
+func GetAllReservas(reserva *[]Reserva, id string) (err error) {
+	if err = Config.DB.Where("idClient = ?", id).Find(reserva).Error; err != nil {
+		return err
+	}
+	return nil
+}
