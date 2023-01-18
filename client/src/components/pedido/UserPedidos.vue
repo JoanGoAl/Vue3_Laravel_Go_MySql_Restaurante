@@ -65,11 +65,15 @@ const formatFecha = (fecha) => {
         </thead>
         <tbody v-if="pedidos">
             <tr v-for="pedido in pedidos">
-                <td>{{pedido.id}}</td>
+                <td>{{ pedido.id }}</td>
                 <!-- <td>{{pedido.pedido}}</td> -->
                 <td><button @click="handelOpenModal(pedido.pedido)">Ver Pedido</button></td>
-                <td>{{pedido.precio}}</td>
-                <td> {{formatFecha(pedido.updated_at)}}</td>
+                <td>{{ pedido.precio }}</td>
+                <td>
+                    <div v-if="pedido.status == 1">
+                        {{ formatFecha(pedido.updated_at) }}
+                    </div>
+                </td>
                 <td>
                     <div v-if="pedido.status == 0" class="pendiente">
                         Pendiente
@@ -106,10 +110,12 @@ tbody::-webkit-scrollbar {
 
 
 
-thead, tbody tr {
+thead,
+tbody tr {
     display: table;
     width: 100%;
-    table-layout: fixed;/* even columns width , fix width of table too*/
+    table-layout: fixed;
+    /* even columns width , fix width of table too*/
 }
 
 table {
@@ -117,7 +123,8 @@ table {
     width: 100%;
 }
 
-th, td {
+th,
+td {
     text-align: left;
     padding: 8px;
 }

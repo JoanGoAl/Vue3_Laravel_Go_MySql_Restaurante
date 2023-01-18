@@ -47,5 +47,19 @@ const handleFilter = (e) => {
 </template>
 
 <style scoped>
+input[type="date"] {
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin: 0 5px;
+}
 
+select {
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin: 0 5px;
+}
 </style>

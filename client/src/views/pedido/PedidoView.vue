@@ -57,7 +57,7 @@ const handlePagination = (aux) => {
         <div class="container-productos">
             <div class="container-filtros">
                 <input type="text" name="search" id="search" placeholder="Buscar producto..." v-model="filter.search">
-                <label for="categoria" style="margin-right: 5px;">Categoria</label>
+                <!-- <label for="categoria" style="margin-right: 5px;">Categoria</label> -->
                 <select name="" id="" v-model="filter.categoria">
                     <option value="">Seleccione una categoria</option>
                     <option v-if="state.productList" v-for="category in categories()" :value="category">{{ category }}
@@ -83,6 +83,22 @@ const handlePagination = (aux) => {
 </template>
 
 <style scoped>
+input[type="text"] {
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin: 0 5px;
+}
+
+select {
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin: 0 5px;
+}
+
 .target-contianer {
     height: 68.2vh;
 }

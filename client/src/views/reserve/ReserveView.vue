@@ -112,11 +112,11 @@ const hundelSend = () => {
 
 <style scoped>
 .container-vista-previa {
-    width: 25%;
+    position: fixed;
+    width: 35%;
     height: 100%;
-    margin-left: 10px;
-    padding: 10px;
     text-align: center;
+    right: 0;
 }
 
 .mesa {

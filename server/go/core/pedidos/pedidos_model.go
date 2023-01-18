@@ -6,7 +6,7 @@ type Pedido struct {
 	Pedido    string  `json:"pedido"`
 	Precio    float32 `json:"precio"`
 	Status    float32 `json:"status"`
-	UpdatedAt string  `json:"updated_at"`
+	UpdatedAt string  `json:"updated_at"` // TODO arreglar para insert pedido
 }
 
 func (b *Pedido) TableName() string {

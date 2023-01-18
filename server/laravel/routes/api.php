@@ -32,8 +32,8 @@ Route::middleware('jwt.verify')->group(function () {
 Route::middleware('jwt.verify')->group(function () {
     Route::get('/getUsers', [UserController::class, 'getUsers']);
     Route::put('/updateUser', [UserController::class, 'updateUser']);
+    Route::get('/checkAdmin/{email}', [UserController::class, 'checkAdmin']);
 });
-Route::get('/checkAdmin/{email}', [UserController::class, 'checkAdmin']);
 
 // Products
 Route::middleware('jwt.verify')->group(function () {
